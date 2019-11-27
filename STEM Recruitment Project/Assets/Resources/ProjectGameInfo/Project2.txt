@@ -1,0 +1,41 @@
+﻿JOB_INFO; 
+Project Headquarters - Today Recruiting for… Habitat Enhancement;
+The local US Forest Service office was awarded a grant to enhance habitat for bats that migrate through your town. Due to human development, places for the bats to roost during the day have diminished. Bats need places to roost that are safe from predators, not noisy, and are within 3 miles of a food source. The grant requires that 300 bat houses be placed in a location that will help the bat population thrive. It also stipulates outreach to locals about the importance of healthy bat populations.:
+Would you help me identify a team who can implement this project?; 
+I’ll need people who can help decide where to put the bat houses, build and install the houses. and evaluate if and how bats are using them once they’ve been installed;
+JOB_END;
+WORKER_INFO;
+Worker1;
+GIS Specialist;
+Research or develop geospatial technologies. May produce databases, perform applications programming, or coordinate projects. May specialize in areas such as agriculture, wildlife habitats, health care, retail trade, urban planning, or military intelligence.;
+YES; 
+Absolutely! A GIS Specialist would be able to help the team identify locations to install the bat houses that fit the bats’ requirements.;
+Worker2;
+Biologist/ Zoologist;
+Study the origins, behavior, diseases, genetics, and life processes of animals and wildlife. May specialize in wildlife research and management. May collect and analyze biological data to determine the environmental effects of current and potential use of land and water habitats.;
+YES;
+Definitely. A zoologist would be the one on the team who could provide information about the bats’ needs and behavior and conduct surveys to assess where the bats are roosting.;
+Worker3;
+Elementary School Teacher;
+Elementary school teachers provide foundational skills to children from ages five through eleven. They teach academic, social, and life lessons to help students.;
+NO;
+The elementary school teacher might find out about the project and teach their students about it, but they wouldn’t be necessary for the project itself.;
+Worker4;
+Carpenter;
+Construct, erect, install, or repair structures and fixtures made of wood and sometimes other materials.;
+YES;
+Making 300 bat boxes out of wood will require someone with skills to build and install them. A carpenter would be a perfect addition to your team!;
+Worker5;
+Electrical Engineer;
+Electrical engineers research, design, and develop electrical equipment including specialized sensors for commercial, industrial, or scientific use.;
+NO; 
+A future project could include designing, building, and installing sensors to detect when bats are using the installed boxes, but at this stage of the project, an electrical engineer will not be necessary.;
+Worker6;
+Software Developer/Engineer;
+Software developers and engineers create and fix websites, computer programs, mobile and desktop applications. They often use code to build these programs from scratch.;
+NO;
+Website work and/or coding of any kind are not directly required for this project.;
+WORKER_END;
+
+
+

@@ -1,0 +1,15 @@
+LAYOUT & INSTRUCTIONS FOR STAR SELECTION:
+- Change camera layout-- 
+	* Camera projection: Orthographic
+	* Camera size: 3 (makes editing easier).
+	* Camera position: 0,0,0
+- Change canvas render mode to "Screen Space - Camera" (make sure to drag the main camera into the render camera field).
+- Drag right and left hand prefabs onto space (not on canvas - might change this if I can't get scaling to work w/ calibration).
+- Drag HandGesturesScripts prefab onto space (not on canvas) and drag the right & left hands and the camera onto the public fields
+- Change button layout on all buttons in scene -- 
+	* Buttons should have a box collider surrounding the whole thing. Check the "is trigger" box.
+	* Buttons also need a rigidbody. Uncheck "Use Gravity", check "Is Kinematic", and check all boxes for "freeze position" & "freeze rotation"
+	* Add the "Button" tag. The star can't click on a button without the button tag.
+- Find and uncheck the hand cursor script 
+- Drag the YellowStar3 prefab onto space (not on canvas) and drag the right and left hands onto the public fields in "Move Star V2"
+Star should now be able to click on a button once the user lets go of the star. The star will do a quick animation before clicking.

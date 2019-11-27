@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SplashScreens/SplashTutorial.unity
+    guid: 13eac657a35edfc49ac5851393602279
+  - enabled: 1
+    path: Assets/Scenes/CalibrationGame.unity
+    guid: c16376eccae037f459940f809743d95f
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Registration.unity
+    guid: de3f6edd8b3675949a3ac2715686e4fe
+  - enabled: 1
+    path: Assets/Scenes/AboutUs.unity
+    guid: 9f76d8f93036de8459019eb86300baa6
+  - enabled: 1
+    path: Assets/Scenes/LogIn.unity
+    guid: ea03254b550f1884bb5ee1d1fa39d22c
+  - enabled: 1
+    path: Assets/Scenes/Modules.unity
+    guid: 3da1f68af7931e34f9ef9bddf1536a88
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: ba5694acfb85e8c40a79fadc0d86ee9a
+  - enabled: 1
+    path: Assets/Scenes/k5.unity
+    guid: 3e4018f52f8d4644d987e014d881b2a6
+  - enabled: 1
+    path: Assets/Scenes/5_6.unity
+    guid: 1e127e4387ab3bc459850419a4c32527
+  - enabled: 1
+    path: Assets/Scenes/CC.unity
+    guid: 6ffc3d485300c2242ac6889544ed84d2
+  - enabled: 1
+    path: Assets/Scenes/SplashScreens/interviewJob.unity
+    guid: 04b0f938f73fe8944987c136afa54d95
+  - enabled: 1
+    path: Assets/Scenes/SplashScreens/interviewQuestions.unity
+    guid: e965429202cbd1146939fb684b62b22d
+  - enabled: 1
+    path: Assets/Scenes/mcq.unity
+    guid: ddc6f541e5676b84fa4dceee3dd58a66
+  - enabled: 1
+    path: Assets/Scenes/SplashScreens/MathGameTutorial.unity
+    guid: 886be63a824c9744c9af96779f927327
+  - enabled: 1
+    path: Assets/Scenes/MathGameScenes/MathGame.unity
+    guid: c9d128e8cc547bb46b9b3e7ec136078c
+  - enabled: 1
+    path: Assets/Scenes/SplashScreens/TrainingGameSplash.unity
+    guid: 518fd08c514ea2e4899242a45794761c
+  - enabled: 1
+    path: Assets/Scenes/TestGame.unity
+    guid: 9f1cd2e42dc55d0499a61a5dae21310b
+  - enabled: 1
+    path: Assets/Scenes/WorkerGameScenes/WorkerGameV3.unity
+    guid: 436b33fd31895544f9f05524a3c35e53
+  m_configObjects: {}

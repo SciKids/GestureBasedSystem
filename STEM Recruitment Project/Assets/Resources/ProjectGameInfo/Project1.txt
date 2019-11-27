@@ -1,0 +1,40 @@
+﻿JOB_INFO;
+Project Headquarters - Today Recruiting for…Smartphone Development;
+I'm trying to create a new smartphone and I want to sell it in 12 months. Creating and selling smartphones require a lot of different workers with different skills. Some of the tasks that are required in this project are
+- hardware development and testing
+- software development
+- advertising;
+I'm building a smartphone and I need your help!:This project will include designing and building the device, creating software for it...:and getting it on the market in 12 months.;
+JOB_END;
+WORKER_INFO;
+Worker1;
+Software Developer/Engineer;
+Software developers and engineers create and fix websites, computer programs, mobile and desktop applications. They often use code to build these programs from scratch.;
+YES; 
+Building a smartphone definitely requires software developers to create an operating system and applications.;
+Worker2;
+Elementary School Teacher;
+Elementary school teachers provide foundational skills to children from ages five through eleven. They teach academic, social, and life lessons to help students.;
+NO;
+Although all of the required workers probably had an elementary school teacher help them at some point, this particular project does not need one.;
+Worker3;
+Project Manager;
+Project managers (PMs) oversee the planning and execution of given project for a company or client by managing a team of workers, scheduling deadlines, and acting as the point of contact for any outsourced resources.;
+YES;
+A project manager will definitely be needed to help coordinate the different aspects of the project.;
+Worker4;
+Electrical Engineer;
+Electrical engineers research, design, and develop electrical equipment for commercial, industrial, or scientific use.;
+YES;
+An electrical engineer will help design the hardware of this project and make sure all its parts work well together.;
+Worker5;
+Biologist/Zoologist;
+Study the origins, behavior, diseases, genetics, and life processes of animals and wildlife. May specialize in wildlife research and management. May collect and analyze biological data to determine the environmental effects of current and potential use of land and water habitats.;
+NO; 
+No actual wildlife involved in this project!;
+Worker6;
+Carpenter;
+Construct, erect, install, or repair structures and fixtures made of wood and sometimes other materials.;
+NO;
+Although carpentry is very useful to people, this job function is not needed on this project.;
+WORKER_END

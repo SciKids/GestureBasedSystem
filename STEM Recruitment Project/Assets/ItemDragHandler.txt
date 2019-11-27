@@ -1,0 +1,140 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+// Drags image under mouse
+public class ItemDragHandler : MonoBehaviour
+{
+    public const string DRAGGABLE_TAG = "UIDraggable";
+
+    private bool dragging = false;
+
+    private Vector2 originalPosition;
+
+    private Transform objectToDrag;
+
+    private Image objectToDragImage;
+
+    List<RaycastResult> hitObjects = new List<RaycastResult>();
+
+    // NUITRACK STUFF
+    bool active = false;
+    bool press = false;
+    bool pressed = false;
+    
+    void Start()
+    {
+        Application.runInBackground = true;
+        NuitrackManager.onHandsTrackerUpdate += NuitrackManager_onHandsTrackerUpdate;
+    }
+
+    private void OnDestroy()
+    {
+        NuitrackManager.onHandsTrackerUpdate -= NuitrackManager_onHandsTrackerUpdate;
+    }
+
+    void Update()
+    {
+        //nuitrack.HandTrackerData handTrackerData;
+
+        // Begin to drag object
+        if (Input.GetMouseButtonDown(0))
+        {
+            objectToDrag = GetDraggableTransformUnderMouse();
+
+            if (objectToDrag != null || press)
+            {
+                dragging = true;
+
+                objectToDrag.SetAsLastSibling();
+
+                originalPosition = objectToDrag.position;
+
+                objectToDragImage = objectToDrag.GetComponent<Image>();
+
+                objectToDragImage.raycastTarget = false;
+            }
+        }
+
+        // Drag object
+        if (dragging)
+        {
+            objectToDrag.position = Input.mousePosition;
+        }
+
+        // Drop object
+        if (Input.GetMouseButtonUp(0) || !press)
+        {
+            objectToDrag.position = Input.mousePosition;
+
+            objectToDragImage.raycastTarget = true;
+
+            dragging = false;
+        }
+    }
+    private GameObject GetObjectUnderMouse()
+    {
+        var pointer = new PointerEventData(EventSystem.current);
+
+        pointer.position = Input.mousePosition;
+
+        EventSystem.current.RaycastAll(pointer, hitObjects);
+
+        if (hitObjects.Count <= 0) return null;
+
+        return hitObjects.First().gameObject;
+
+
+    }
+
+    private Transform GetDraggableTransformUnderMouse()
+    {
+        GameObject clickedObject = GetObjectUnderMouse();
+
+        if (clickedObject != null && clickedObject.tag == DRAGGABLE_TAG)
+        {
+            return clickedObject.transform;
+        }
+
+        return null;
+    }
+
+    private void NuitrackManager_onHandsTrackerUpdate(nuitrack.HandTrackerData handTrackerData)
+    {
+        active = false;
+        press = false;
+
+        if (handTrackerData != null)
+        {
+            nuitrack.UserHands userHands = handTrackerData.GetUserHandsByID(CurrentUserTracker.CurrentUser);
+
+            if (userHands != null)
+            {
+                if (userHands.RightHand != null)
+                {
+                    Vector2 curpos = new Vector2(userHands.RightHand.Value.X * Screen.currentResolution.width, userHands.RightHand.Value.Y * Screen.currentResolution.height);
+                    MouseOperations.SetCursorPosition((int)(curpos.x), (int)(curpos.y));
+                    active = true;
+                    press = userHands.RightHand.Value.Click;
+
+                    if (pressed != press)
+                    {
+                        pressed = press;
+
+                        if (pressed)
+                        {
+                            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp | MouseOperations.MouseEventFlags.LeftDown);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+} // End ItemDragHandler class
+
+
