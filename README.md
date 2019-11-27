@@ -1,4 +1,4 @@
-# NAU Capstone 2018-2019
+# Gesture-Based Learning System
 This repository contains all project files needed for our system. More information can be found on our [team website.](https://www.cefns.nau.edu/capstone/projects/CS/2019/SciKids-S19/index.html)  
 ## Project Description
 This project is a mobile, modular, gesture-based learning system used for STEM recruitment and career readiness. Gesture recognition technology allows the audience to have a richer experience that aims to:
@@ -8,7 +8,6 @@ This project is a mobile, modular, gesture-based learning system used for STEM r
 ## Team Information
 **Title:** Gesture-based engagement station for STEM recruiting in K-12
 - **Sponsor:** Elizabeth Glass
-- **Mentor:** Austin Sanders
 - **Developers:** Samantha Earl, Claudia Coronel, Gwen Morris
 ## Project Download Link & Instructions
 Download the project using the following link: 
