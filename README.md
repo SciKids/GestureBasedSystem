@@ -9,17 +9,3 @@ This project is a mobile, modular, gesture-based learning system used for STEM r
 **Title:** Gesture-based engagement station for STEM recruiting in K-12
 - **Sponsor:** Elizabeth Glass
 - **Developers:** Samantha Earl, Claudia Coronel, Gwen Morris
-## Project Download Link & Instructions
-Download the project using the following link: 
-[Project Download Link](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/Oakheart27/Capstone/tree/master/Standalone%20Project)
-
-You will be directed to the following screen and the download will begin automatically: </br>
-
-![DownGit](https://github.com/Oakheart27/Capstone/blob/master/Extra%20Information/Images/downgit.png)</br>
-
-
-After the project is downloaded, unzip the file. Open the resulting folder(s). You should see this directory:</br>
-
-![Folder](https://github.com/Oakheart27/Capstone/blob/master/Extra%20Information/Images/opening_app.png)</br>
-
-Open the "STEM Recruitment" application to try out our system!
