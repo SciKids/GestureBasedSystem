@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script Summary ////////////////////////////////////////////////////////////
+/*
+ * Reads through boss' dialog
+ */
+
 public class BasicDialog : MonoBehaviour
 {
     public float letterPause = 0.05f;
@@ -14,10 +19,10 @@ public class BasicDialog : MonoBehaviour
     private int index = 0;
     private int allSentences;
     
-    void Start()
+    /*void Start()
     {
      //   StartDialog();  
-    }
+    }*/
 
     // Receives messages from LoadGameInfo
     public void ReceiveDialog(string[] dialog)
@@ -48,17 +53,19 @@ public class BasicDialog : MonoBehaviour
                 nextButton.gameObject.SetActive(true);
                 nextButton.enabled = true;
             }
-        }
+        }// end if
+
         // While a sentence isn't done, keep next sentence button
         // deactivated
         else
         {
             nextButton.gameObject.SetActive(false);
             nextButton.enabled = false;
-        }
-    }
+        }// end else
 
+    }// end Update
 
+    // Types one letter at a time after a given amount of time (letterPause)
     IEnumerator TypeText()
     {
         foreach (char letter in sentences[index].ToCharArray())
@@ -69,7 +76,7 @@ public class BasicDialog : MonoBehaviour
 
         sentenceDone = true;
         index++;
-    }
+    }// end TypeText
     
     // This is called in the OnClick() in the nextSentenceButton.
     public void NextSentence()
@@ -79,8 +86,10 @@ public class BasicDialog : MonoBehaviour
         dialogBox.text = "";
 
         StartCoroutine(TypeText());
-    }
-    // Can be called elsewhere
+    }// end NextSentence
+
+    // Can be called elsewhere. This is called when info from LoadGameInfo is loaded and sent, 
+    // and is also called when the new project button is clicked.
     public void StartDialog()
     {
         index = 0;
@@ -97,5 +106,6 @@ public class BasicDialog : MonoBehaviour
 
         nextScreenButton.gameObject.SetActive(false);
         nextScreenButton.enabled = false;
-    }
-}
+    }// end StartDialog
+
+}// end BasicDialog

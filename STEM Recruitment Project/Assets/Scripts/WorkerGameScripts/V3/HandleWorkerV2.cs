@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script Summary ////////////////////////////////////////////////////////////
+/*
+ * Attached to chair object. Sends messages to CheckWorkersV3 as workers enter and leave 
+ * the chair attached.
+ */
+
 public class HandleWorkerV2 : MonoBehaviour
 {
     public GameObject rightHand, leftHand;
@@ -14,6 +20,8 @@ public class HandleWorkerV2 : MonoBehaviour
     private GameObject newWorker = null; //temporary worker that touched chair
     private GameObject placementCube;
     private GameObject workerScreen;
+
+    // Find placement cube and worker screen.
     void Start()
     {
         // Get the cube, so I know where to place workers.
@@ -21,10 +29,12 @@ public class HandleWorkerV2 : MonoBehaviour
 
         // Get full worker screen
         workerScreen = GameObject.Find("/WorkerCanvas");
-    }
+    }// end start
 
+    // Checks for workers who are placed into chair
     private void Update()
     {
+        // If the user has dropped a worker into the chair, call PutWorkerInChair
         if (readyToPlace && UserLetGo())
         {
             PutWorkerInChair(newWorker);
@@ -32,9 +42,11 @@ public class HandleWorkerV2 : MonoBehaviour
             readyToPlace = false; // Only wanna do this once at a time
 
             Debug.Log(this.name + " has " + worker.name);
-        }
-    }
+        }// end if
 
+    }// end update
+
+    // If a worker enters the chair's collision box, temporarily save that worker
     private void OnTriggerEnter(Collider other)
     {   
         if (other.gameObject.tag == "Worker")
@@ -44,8 +56,10 @@ public class HandleWorkerV2 : MonoBehaviour
 
             readyToPlace = true;
         }
-    }
 
+    }// end OnTriggerEnter
+
+    // If a worker has left the collision box, delete worker 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Worker")
@@ -53,8 +67,10 @@ public class HandleWorkerV2 : MonoBehaviour
             Debug.Log("Worker left meh!!");
             WorkerLeftChair(other.gameObject);
         }
-    }
 
+    }// end OnTriggerExit
+
+    // Puts worker into array in CheckWorkersV3
     void PutWorkerInChair(GameObject workerObj)
     {
         Debug.Log("PutWorkerInChair called.");
@@ -68,8 +84,11 @@ public class HandleWorkerV2 : MonoBehaviour
 
             worker.SendMessage("SendBack", true); // Send previous worker back
 
-            BlockAllOtherChairs(true);
-        }
+            // This ensures that worker won't move to other chair while moving back to their original
+            // position.
+            BlockAllOtherChairs(true); 
+
+        }// end if 
 
         Debug.Log("Placing worker " + workerObj.name + " in " + this.name);
 
@@ -82,8 +101,10 @@ public class HandleWorkerV2 : MonoBehaviour
         newWorker = null;
 
         isFilled = true;
-    }
 
+    }// end PutWorkerInChair
+
+    // 
     void WorkerLeftChair(GameObject workerObj)
     {
         if (isFilled && workerObj == worker)
