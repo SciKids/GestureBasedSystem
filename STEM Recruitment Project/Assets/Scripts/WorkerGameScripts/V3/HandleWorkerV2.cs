@@ -92,31 +92,40 @@ public class HandleWorkerV2 : MonoBehaviour
 
         Debug.Log("Placing worker " + workerObj.name + " in " + this.name);
 
+        // send the workerObj to AddWorker in CheckWorkersV3. This adds the worker into the array found in 
+        // CheckWorkersV3
         workerScreen.SendMessage("AddWorker", workerObj);
 
+        // Change the worker's position to the placement cube's position.
         workerObj.transform.position = placementCube.transform.position;
 
+        // save the workerObj to worker
         worker = workerObj;
 
         newWorker = null;
 
+        // used if another worker wants to be let in (line 79)
         isFilled = true;
 
     }// end PutWorkerInChair
 
-    // 
+    // Deletes worker from variables here and from the array found in CheckWorkersV3
     void WorkerLeftChair(GameObject workerObj)
     {
+        // Making sure that the chair is filled and the worker in the chair is the same as the given worker.
         if (isFilled && workerObj == worker)
         {
             isFilled = false;
 
             worker = null;
 
+            // Delete from array in CheckWorkersV3
             workerScreen.SendMessage("DeleteWorker", workerObj);
         }
-    }
+    }// end WorkerLeftChair
 
+    // Reused function. If the distance between the user's left and right hand is greater than 3.5 unity units,
+    // return true. Otherwise, return false.
     bool UserLetGo()
     {
         if (rightHand.transform.position.x - leftHand.transform.position.x > 3.5)
@@ -131,25 +140,33 @@ public class HandleWorkerV2 : MonoBehaviour
         }
 
         return false;
-    }
+    }// end UserLetGo
 
+    // Blocks other chairs from grabbing workers if they are being sent back to their original position.
     void BlockAllOtherChairs(bool status)
     {
+        // Go through each chair
         for (int i = 1; i <= 3; i++)
         {
+            // Find the chair object (labeled as "Chair#")
             string otherChairStr = "Chair" + i.ToString();
-
             GameObject otherChair = GameObject.Find("/WorkerCanvas/WorkerScreen/" + otherChairStr);
 
+            // Skipping chair this script is attached to
             if (otherChair != this.gameObject)
             {
+                // Send a message to BlockThisChair (below) to block chair.
                 otherChair.SendMessage("BlockThisChair", status);
             }
-        }
-    }
+        }// end for loop
 
+    }// end BlockAllOtherChairs
+
+    // Block this chair from grabbing workers
     public void BlockThisChair(bool status)
     {
         blocked = status;
-    }
-}
+
+    }// end BlockThisChair
+
+}// end HandleWorkerV2

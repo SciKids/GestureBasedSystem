@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script Summary ////////////////////////////////////////////////////////////
+/*
+ * Attached to worker objects. If a user hand hovers over a worker, show the 
+ * worker's title and desecription
+ */
+
 public class ShowTitleAndDescriptionV2 : MonoBehaviour
 {
     public Text feedback;
@@ -22,7 +28,8 @@ public class ShowTitleAndDescriptionV2 : MonoBehaviour
     private bool descriptionIsShowing = false;
     private bool workersWereChecked = false;
     // private bool resetPressed = false;
-    // Start is called before the first frame update
+
+    // hide feedbackpic, title, & speechbubble, assign the textToShow to workerDescription
     void Start()
     {
         //title = this.GetComponentInChildren<Text>();
@@ -32,8 +39,9 @@ public class ShowTitleAndDescriptionV2 : MonoBehaviour
         speechbubble = GameObject.Find("/WorkerCanvas/WorkerScreen/Speechbubble");
         speechbubble.SetActive(false);
 
-    }
+    }// end Start
 
+    //
     private void Update()
     {
         if (title.enabled == false)
@@ -64,8 +72,8 @@ public class ShowTitleAndDescriptionV2 : MonoBehaviour
 
         }
 
+    }// end Update
 
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Hand")
@@ -95,7 +103,7 @@ public class ShowTitleAndDescriptionV2 : MonoBehaviour
                 StartCoroutine(DelayFeedback());
             }
         }
-    }
+    }// end OnTriggerEnter
 
     private void OnTriggerExit(Collider other)
     {

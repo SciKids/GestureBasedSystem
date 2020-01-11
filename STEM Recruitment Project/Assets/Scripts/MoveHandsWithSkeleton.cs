@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script Summary ////////////////////////////////////////////////////////////
+/*
+ * Uses Nuitrack's skeleton tracker module to track the user's right and left hands.
+ */
 public class MoveHandsWithSkeleton : MonoBehaviour
 {
     ///// public variables - for skeleton tracking & scaling /////
@@ -45,13 +49,14 @@ public class MoveHandsWithSkeleton : MonoBehaviour
         button = null;
         buttonClicked = false;
         initPosLock = false;
-    }
+    }// end Start
 
     private void OnDestroy()
     {
         // Be sure to unmirror image before switching scripts.
         NuitrackManager.DepthSensor.SetMirror(false);
-    }
+
+    }// end OnDestroy
 
     // Update is called once per frame
     void Update()
@@ -96,10 +101,9 @@ public class MoveHandsWithSkeleton : MonoBehaviour
            
         } // end if user is in frame
 
-        
+    }// end Update
 
-    }
-
+    // This is for the hover to click functionality. MAYBE DELETE?
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Button" && hoverToClick)
@@ -109,8 +113,9 @@ public class MoveHandsWithSkeleton : MonoBehaviour
             StartCoroutine(ClickButton(button));
             StartCoroutine(ClickButton(button));
         }
-    }
+    }// end OnTriggerEnter
 
+    // This is for hover to click functionality. MAYBE DELETE?
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.tag == "Button" && hoverToClick)
@@ -121,13 +126,15 @@ public class MoveHandsWithSkeleton : MonoBehaviour
         }
     }
 
+    // This is for hover to click functionality. MAYBE DELETE?
     IEnumerator ClickButton(Button button)
     {
         yield return new WaitForSeconds(3f);
 
         button.onClick.Invoke();
-    }
+    }// end ClickButton
 
+    // This is for hover to click functionality. MAYBE DELETE?
     IEnumerator ShowTimer(Button button)
     {
         int timeLeft = 3;
@@ -144,7 +151,8 @@ public class MoveHandsWithSkeleton : MonoBehaviour
         }
 
         button.GetComponent<Text>().text = originalBtnText;
-    }
+    }// end ShowTimer
+
     ////// Scripts that can receive messages from other scripts.//////
   
 
