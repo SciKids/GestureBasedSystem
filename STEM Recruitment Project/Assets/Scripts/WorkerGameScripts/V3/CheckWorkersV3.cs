@@ -337,9 +337,12 @@ public class CheckWorkersV3 : MonoBehaviour
     // If there is one empty spot in the array, return false/
     bool AllChairsFull()
     {
-        if (Array.Exists(workersToCheck, null))
+        for (int i = 0; i < 3; i++)
         {
-            return false;
+            if(workersToCheck[i] == null)
+            {
+                return false;
+            }
         }
         return true;
     }// end AllChairsFull
