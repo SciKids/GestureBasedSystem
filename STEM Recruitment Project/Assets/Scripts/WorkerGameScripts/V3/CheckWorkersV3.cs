@@ -19,13 +19,20 @@ public class CheckWorkersV3 : MonoBehaviour
     private int numOfWorkers = 0; // Keeps track of workers currently in array
     private bool workersChecked = false; 
     private bool allIsCorrect = false;
-
+    private GameObject dummyWorker;
+    
     // Set necessary buttons and loading circle to inactive
     private void Start()
     {
         exitButton.SetActive(false);
         nextButton.SetActive(false);
         loadingCircle.SetActive(false);
+        dummyWorker = new GameObject("dummy");
+        for(int i = 0; i < 3; i++)
+        {
+            workersToCheck[i] = dummyWorker;
+        }
+
     }// end Start
     
     private void Update()
@@ -37,6 +44,7 @@ public class CheckWorkersV3 : MonoBehaviour
             nextButton.SetActive(true);
 
             okToCheck = false;
+            
         }
         // If the user has chosen the 3 correct workers, show the exit button
         // and hide the next and reset buttons.
@@ -46,7 +54,9 @@ public class CheckWorkersV3 : MonoBehaviour
             nextButton.SetActive(false);
             resetButton.SetActive(false);
             SendStatusMessageToAllWorkers(true);
+            BlockWorkers(true);// Blocking further worker movement
             allIsCorrect = false; // Resetting this to false so that this block only runs once
+            
         }
 
         // Keep the next button inactive if all of the chairs are not full.
@@ -65,13 +75,13 @@ public class CheckWorkersV3 : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                if (workersToCheck[i] != null)
+                if (workersToCheck[i] != dummyWorker)
                 {
                     // Just a print statement so that I can see what's going on.
                     Debug.Log(workersToCheck[i].name + " is already in index " + i);
                 }
                 // Find the empty spot in the array
-                if (workersToCheck[i] == null)
+                if (workersToCheck[i] == dummyWorker)
                 {
                     Debug.Log("index " + i + " is empty");
                     workersToCheck[i] = newWorker; // Place worker in index.
@@ -122,7 +132,7 @@ public class CheckWorkersV3 : MonoBehaviour
             if (workersToCheck[i] == newWorker)
             {
                 // Delete the worker
-                workersToCheck[i] = null;
+                workersToCheck[i] = dummyWorker;
                 // Make sure numOfWorkers doesn't go below 0 before decrementing it.
                 if (numOfWorkers > 0)
                 {
@@ -187,7 +197,7 @@ public class CheckWorkersV3 : MonoBehaviour
         allIsCorrect = RecheckCorrectness();
 
         // Unblock workers
-        BlockWorkers(false);
+        //BlockWorkers(false);
 
         // Used in Reset()
         workersChecked = true;
@@ -305,7 +315,7 @@ public class CheckWorkersV3 : MonoBehaviour
         // Send each worker in workersToCheck back to their original position
         for (int i = 0; i < numOfWorkers; i++)
         {
-            if (workersToCheck[i] != null)
+            if (workersToCheck[i] != dummyWorker)
             {
                 workersToCheck[i].SendMessage("SendBack", true);
             }
@@ -314,6 +324,8 @@ public class CheckWorkersV3 : MonoBehaviour
         nextButton.SetActive(false); // Hide next button
 
         SendWorkersChecked(false);
+
+        BlockWorkers(false); // Make sure workers can be moved.
         //SendStatusMessageToAllWorkers(true); // reset the "oneIsWrong" variable
     }// end Reset
 
@@ -339,7 +351,7 @@ public class CheckWorkersV3 : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            if(workersToCheck[i] == null)
+            if(workersToCheck[i] == dummyWorker)
             {
                 return false;
             }
