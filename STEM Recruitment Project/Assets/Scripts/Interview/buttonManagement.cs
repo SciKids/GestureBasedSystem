@@ -40,12 +40,10 @@ public class buttonManagement : MonoBehaviour
     public GameObject gregsp, lisasp, tyronesp;
     public GameObject p1, p2, p3;
     public GameObject jobdescription;
-    public GameObject jobPanel, scorePanel, resultsPanel;
     public GameObject feedBtn;
     public GameObject score2, gscoreF, lscoreF, tscoreF;
     public GameObject gscored, lscored, tscored;  // minijuge scores
     public GameObject jresp, jtext;
-    public GameObject quitBtn;
 
     public Text textDisplay; // Questions
     public Text gregR, lisaR, tyroneR; //  Responses of interviewies
@@ -113,7 +111,6 @@ public class buttonManagement : MonoBehaviour
             p2Btn.SetActive(false);
             p3Btn.SetActive(false);
 
-            quitBtn.SetActive(true);
             p1B2.SetActive(true);
             p2B2.SetActive(true);
             p3B2.SetActive(true);
@@ -177,29 +174,7 @@ public class buttonManagement : MonoBehaviour
         cClick += 1;
         //continueBtn.GetComponent<Button>().interactable = false;
         continueBtn.SetActive(false);
-        /* hides minijudges
-        gscored.SetActive(false);
-        lscored.SetActive(false);
-        tscored.SetActive(false); */
 
-        quitBtn.SetActive(false);
-    }
-
-    public void disappper()
-    {
-        gscored.SetActive(false);
-        lscored.SetActive(false);
-        tscored.SetActive(false);
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "per1")
-        {
-            Debug.Log("GREG OVER ON TIRGGER");
-            gregOver();
-
-        }
     }
 
     public void ButtonClick(Button btn)
@@ -259,70 +234,6 @@ public class buttonManagement : MonoBehaviour
 
         //continueBtn.GetComponent<Button>().interactable = true;
         continueBtn.SetActive(true);
-
-    }
-
-    // Allows users to choose another person to hire and see their results
-    public void finalClick(Button btn)
-    {
-        Debug.Log("calling finalClick function");
-        // local variables
-        int final = 0; // tracks who is selected
-        userChoice = "ERROR";
-
-        // If Greg choosen
-        if (btn.name == "p1BtnFin")
-        {
-            final = 5;
-            Debug.Log("Updated player 1 FINAL");
-            userChoice = "Greg";
-        }
-
-        // if Lisa choosen
-        else if (btn.name == "p2BtnFin")
-        {
-            final = 10;
-            Debug.Log("Updated Player 2 FINAL");
-            userChoice = "Lisa";
-        }
-
-        // if Tyrone choosen
-        else if (btn.name == "p3BtnFin")
-        {
-            final = 15;
-            Debug.Log("Updated Player 3 FINAL");
-            userChoice = "Tyrone";
-        }
-        else
-        {
-            Debug.Log("No button press detected FINAL");
-        }
-
-        result.text = "The person you chose is " + userChoice;
-
-        // "\u2022" is bullet point
-
-        if (final == 5)
-        {
-            Debug.Log("in greg");
-            pro.text = "\u2022 Enthusiastic";
-            con.text = "\u2022 Inexpereinced and will need a LOT of supervision to become a fully contributing member of the field team";
-        }
-
-        if (final == 10)
-        {
-            pro.text = "\u2022 Confident";
-            con.text = "\u2022 Not self refelctive enough to check their work for accuracy lealding to data collection mistakes";
-        }
-
-        if (final == 15)
-        {
-            pro.text = "\u2022 Enthusiastic " + "\n" + "\u2022 Confident (but not too much) \n" + "\u2022 Quick to learn";
-            con.text = "\u2022 Does not get along well with the team";
-        }
-        //endGame();
-
-        feedBtn.SetActive(true);
     }
 
     // determines what happens when the mouse moves over characters
@@ -422,14 +333,6 @@ public class buttonManagement : MonoBehaviour
 
         // hides minijudge response
         jresp.SetActive(false);
-    }
-
-    // Displays the pros and cons of a choosen person 
-    public void seeScore()
-    {
-        jobPanel.SetActive(false);
-        scorePanel.SetActive(false);
-        resultsPanel.SetActive(true);
     }
 
     public void displayScore()
