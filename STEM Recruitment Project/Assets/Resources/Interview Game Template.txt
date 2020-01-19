@@ -1,0 +1,43 @@
+﻿<Job Title>;
+<Job Description>; Max Character count 1022 
+<Interview Question #1>; MAX Question Characters 284
+<Person1 ANS>;  MAX Characters 646
+<Person2 ANS>;
+<Person3 ANS>; 
+<P1 Feedback>; MAX Characters 180
+<P1 Score>;
+<P2 Feedback>;
+<P2 Score>;
+<P3 Feedback>;
+<P3 Score>;
+<Interview Question #2>;
+<Person1 ANS>; 
+<Person2 ANS>;
+<Person3 ANS>; 
+<P1 Feedback>;
+<P1 Score>;
+<P2 Feedback>;
+<P2 Score>;
+<P3 Feedback>;
+<P3 Score>;
+<Interview Question #N>; 
+<Person1 ANS>; 
+<Person2 ANS>;
+<Person3 ANS>; 
+<P1 Feedback>;
+<P1 Score>;
+<P2 Feedback>;
+<P2 Score>;
+<P3 Feedback>;
+<P3 Score>;
+<Person1 Pros>; MAX Characters per line 29: 6 lines: Note that if feedback greater than 29 will just use a new line
+<Person1 Cons>; MAX Characters per line 29: 6 lines 
+<Person2 Pros>; 
+<Person2 Cons>; 
+<Person3 Pros>;
+<Person3 Cons>;
+Job Description and Interview Questions Splash Page
+Job Description - <Job Title>;  Max 75 Characters 
+<Job Description Page 1>  1st Page Character Max 1524
+<Job Description Page N>; Pages > 1 Character Max 1604
+<Interview Questions>; MAX Question Character 284

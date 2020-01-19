@@ -8,7 +8,7 @@ TextureImporter:
     21300006: Knight
     21300008: Wizzard
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -114,7 +114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b85d0102228e6f4cb738a8dff6adc69
+      spriteID: 02305410000000000800000000000000
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e9a0f1d212038a498fd0d66e53bea89
+      spriteID: 22305410000000000800000000000000
       vertices: []
       indices: 
       edges: []
@@ -154,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ee0cf07382738149b2698cd5d6de47f
+      spriteID: 42305410000000000800000000000000
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f09c9da0e070eb94a96cb479bb3e6f43
+      spriteID: 62305410000000000800000000000000
       vertices: []
       indices: 
       edges: []
@@ -194,7 +194,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f45368ff2af58d4b81d5e932f3f59d6
+      spriteID: 82305410000000000800000000000000
       vertices: []
       indices: 
       edges: []
