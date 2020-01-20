@@ -49,10 +49,10 @@ public class NumberCollider : MonoBehaviour
             BlockOtherNumbers(true);
             correct.GetComponent<Animator>().Play("Grow");
             yield return new WaitForSeconds(1.0f);
-            BlockOtherNumbers(false);
+            //BlockOtherNumbers(false);
             correct.transform.position = initPos;
             correct.SetActive(false);
-            mainCamera.SendMessage("PressAnswer", num);
+            //mainCamera.SendMessage("PressAnswer", num);
         }
         else
         {
@@ -62,11 +62,14 @@ public class NumberCollider : MonoBehaviour
             BlockOtherNumbers(true);
             wrong.GetComponent<Animator>().Play("Grow");
             yield return new WaitForSeconds(1.0f);
-            BlockOtherNumbers(false);
+            //BlockOtherNumbers(false);
             wrong.transform.position = initPos;
             wrong.SetActive(false);
-            mainCamera.SendMessage("PressAnswer", num);
+            //mainCamera.SendMessage("PressAnswer", num);
         }
+
+        BlockOtherNumbers(false);
+        mainCamera.SendMessage("PressAnswer", isCorrectAnswer);
     }
 
     void BlockOtherNumbers(bool status)

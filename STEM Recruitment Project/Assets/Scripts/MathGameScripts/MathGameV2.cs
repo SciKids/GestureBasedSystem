@@ -13,6 +13,7 @@ public class MathGameV2 : MonoBehaviour
     private int level, ans, ansChosen, score;
     private const int SCORE_VAL = 10;
     private bool ready = false;
+    private Sprite[] allNumbers; 
     // IEnumerator runLevelCoroutine;
 
     private void Awake()
@@ -23,6 +24,12 @@ public class MathGameV2 : MonoBehaviour
             numbers[i].SetActive(false);
         }
 
+        allNumbers = Resources.LoadAll<Sprite>("Images/MathGameImages/MathGameSpritesheet");
+
+        /*for (int i = 0; i < allNumbers.Length; i++)
+        {
+            Debug.Log(allNumbers[i].name);
+        }*/
         ans = -1;
         ansChosen = -1;
         level = 0;
@@ -124,7 +131,8 @@ public class MathGameV2 : MonoBehaviour
             if (i == randAnsIndex)
             {
                 numbers[i].SetActive(true);
-                Sprite ansSprite = Resources.Load<Sprite>("Images/MathGameImages/" + ans.ToString());
+                //Sprite ansSprite = Resources.Load<Sprite>("Images/MathGameImages/" + ans.ToString());
+                Sprite ansSprite = allNumbers[ans];
                 numbers[i].GetComponent<SpriteRenderer>().sprite = ansSprite;
                 numbers[i].SendMessage("SetNum", ans);
                 numbers[i].SendMessage("SetCorrect", true);
@@ -136,7 +144,8 @@ public class MathGameV2 : MonoBehaviour
                 if (randWrongAns != ans && ContainsInt(numbersUsed, randWrongAns) == false)
                 {
                     numbers[i].SetActive(true);
-                    Sprite numSprite = Resources.Load<Sprite>("Images/MathGameImages/" + randWrongAns.ToString());
+                    //Sprite numSprite = Resources.Load<Sprite>("Images/MathGameImages/" + randWrongAns.ToString());
+                    Sprite numSprite = allNumbers[randWrongAns];
                     numbers[i].GetComponent<SpriteRenderer>().sprite = numSprite;
                     numbers[i].SendMessage("SetNum", randWrongAns);
                     numbers[i].SendMessage("SetCorrect", false);
@@ -167,11 +176,11 @@ public class MathGameV2 : MonoBehaviour
         ready = true;
     }
 
-    public void PressAnswer(int num)
+    public void PressAnswer(bool correct)
     {
-        ansChosen = num;
+        //ansChosen = num;
 
-        if (ansChosen == ans)
+        if (correct)
         {
             score += SCORE_VAL;
         }

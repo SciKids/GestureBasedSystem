@@ -385,6 +385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 827395825}
   - component: {fileID: 827395824}
+  - component: {fileID: 827395826}
   m_Layer: 5
   m_Name: 'Canvas '
   m_TagString: Untagged
@@ -443,6 +444,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &827395826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827395823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 1
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!1 &944494211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1330,6 @@ GameObject:
   - component: {fileID: 1582868996}
   - component: {fileID: 1582868995}
   - component: {fileID: 1582868994}
-  - component: {fileID: 1582868997}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1447,15 +1469,6 @@ MonoBehaviour:
     rgba: 4278248447
   segmentOut: {fileID: 1363394320}
   gameColliders: {fileID: 1582868995}
---- !u!45 &1582868997
-Skybox:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582868990}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
 --- !u!1001 &1727733636
 PrefabInstance:
   m_ObjectHideFlags: 0
