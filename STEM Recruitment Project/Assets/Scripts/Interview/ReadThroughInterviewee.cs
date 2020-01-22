@@ -22,14 +22,14 @@ public class ReadThroughInterviewee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string candidateName = this.name + "/";
+        /*string candidateName = this.name + "/";
         arrID = 1;
         ansIndex = 0;
         scoresIndex = 0;
         fbIndex = 0;
         speechBubble = GameObject.Find(candidateName+"Canvas/Speechbubble");
         candidateText = speechBubble.transform.Find("Text").gameObject.GetComponent<Text>();
-        speechBubble.SetActive(false);
+        speechBubble.SetActive(false);*/
     }
     
     // This is just a tester function. Cycles through the answers, scores, and feedback
@@ -120,18 +120,22 @@ public class ReadThroughInterviewee : MonoBehaviour
     public void ReceiveFeedback(string[] newFeedback)
     {
         feedback = newFeedback;
+        Debug.Log(this.name + "'s feedback: " + feedback[0]);
     }
     public void ReceiveScores(int[] newScores)
     {
         scores = newScores;
+        Debug.Log(this.name + "'s score: " + scores[0]);
     }
     public void ReceivePros(string newPros)
     {
         pros = newPros;
+        Debug.Log(this.name + "'s pros: " + pros);
     }
     public void ReceiveCons(string newCons)
     {
         cons = newCons;
+        Debug.Log(this.name + "'s cons: " + cons);
     }
 
     /////////////////////// END PUBLIC GET FUNCTIONS /////////////////////////
