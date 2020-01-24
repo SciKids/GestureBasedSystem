@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script Summary ////////////////////////////////////////////////////////////
+/*
+ * Plays the loading circle, which is activated when the next button is clicked on
+ * the worker screen.
+ * NOTE: This is from a downloaded asset. See Assets/Downloaded Assets/loadingBar/scripts
+ */
+
 public class LoadingScreenV3 : MonoBehaviour
 {
     // Speed colors load in color wheel.
@@ -25,6 +32,7 @@ public class LoadingScreenV3 : MonoBehaviour
 
     void Update()
     {
+        // If the loading circle is activated, start the animation.
         if (GameObject.Find("/WorkerCanvas/LoadingCanvas").activeSelf)
         {
             StartCoroutine(GoBack());
@@ -42,7 +50,7 @@ public class LoadingScreenV3 : MonoBehaviour
 
             }
         }
-    }
+    }// end Update
 
     // Sends message to the MoveScreenV2 script to move screen back to worker screen.
     IEnumerator GoBack()
@@ -52,6 +60,6 @@ public class LoadingScreenV3 : MonoBehaviour
         GameObject.Find("/WorkerCanvas/WorkerScreen").SetActive(true);
         GameObject.Find("/WorkerCanvas/LoadingCanvas").SetActive(false);
 
-    }
+    }// end GoBack
     
 }

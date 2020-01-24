@@ -60,6 +60,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TestGame.unity
     guid: 9f1cd2e42dc55d0499a61a5dae21310b
   - enabled: 1
+    path: Assets/Scenes/WorkerGameScenes/WorkerGameTutorial.unity
+    guid: 7567728f512a1d14eb3d79ee8f684f1a
+  - enabled: 1
     path: Assets/Scenes/WorkerGameScenes/WorkerGameV3.unity
     guid: 436b33fd31895544f9f05524a3c35e53
   m_configObjects: {}

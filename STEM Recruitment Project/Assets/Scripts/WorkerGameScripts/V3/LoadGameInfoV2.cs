@@ -5,6 +5,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Script Summary ////////////////////////////////////////////////////////////
+/*
+ * Parses through a project file and distributes information to the necessary
+ * objects in scene.
+ */
+
 public class LoadGameInfoV2 : MonoBehaviour
 {
     public GameObject bossCanvas, workerCanvas, loadingCanvas;
@@ -17,10 +23,10 @@ public class LoadGameInfoV2 : MonoBehaviour
     private int numOfJobs;
     private string[] txtFileInfo;
 
-    // Start is called before the first frame update
+    // Initialize arrays and begin parsing
     void Start()
     {
-
+        // Initialize allWorkerInfo length to allWorker's length.
         allWorkerInfo = new Worker[allWorkers.Length];
 
         string path = "ProjectGameInfo/"; // Full directory: Resources/ProjectGameInfo
@@ -29,13 +35,15 @@ public class LoadGameInfoV2 : MonoBehaviour
 
         numOfJobs = allJobs.Length; // Count number of available files to pick from
 
-        randomArray = new int[numOfJobs];
+        // used to put available projects in a random list to cycle through.
+        randomArray = new int[numOfJobs]; 
 
-        RandomizeArray();
+        RandomizeArray(); // randomize randomArray
 
         StartParsingFile();
-    }
+    } // end Start()
     
+    // Reads and puts info into txtFileInfo, then organize array's content.
     void StartParsingFile()
     {
 
@@ -46,6 +54,7 @@ public class LoadGameInfoV2 : MonoBehaviour
         // Load chosen project file
         TextAsset txtFile = Resources.Load<TextAsset>(path + jobStr);
 
+        // Put information info txtFileInfo. This is done by splitting up the file by semicolons.
         txtFileInfo = txtFile.text.Split(';');
 
         Debug.Log("Loaded " + jobStr);
@@ -69,8 +78,10 @@ public class LoadGameInfoV2 : MonoBehaviour
 
         //SendWorkersToScreen();
         
-    }
+    }// end StartParsingFile
     
+    // Sets worker canvas to true and sends all necessary info for this canvas. This is
+    // activated when the next button is clicked.
     public void SendWorkerScreenInfo()
     {
         workerCanvas.SetActive(true);
@@ -82,7 +93,8 @@ public class LoadGameInfoV2 : MonoBehaviour
         SendJobDescription();
 
         SendWorkersToScreen();
-    }
+
+    }// end SendWorkerScreenInfo
 
     // Goes through the randomized array. Once array is complete, completely restarts scene. 
     public void RestartScene()
@@ -157,13 +169,16 @@ public class LoadGameInfoV2 : MonoBehaviour
             {
                 status = true;
             }
+            
             else
             {
                 status = false;
             }
 
+            // Get feedback string
             string feedback = txtFileInfo[currentIndex + 4];
 
+            // Create new worker node and put all info into it
             Worker newWorker = new Worker(id, title, description, feedback, status);
 
             allWorkerInfo[arrayIndex] = newWorker;
@@ -171,7 +186,8 @@ public class LoadGameInfoV2 : MonoBehaviour
             arrayIndex++;
 
             currentIndex += 5;
-        }
+        }// end for loop
+
     } // end OrganizeWorkers()
 
     // Sends job description to worker screen canvas
@@ -182,15 +198,17 @@ public class LoadGameInfoV2 : MonoBehaviour
         jobDescriptTab.SendMessage("ReceiveDescript", jobInfo.GetDescript());
 
         Debug.Log(jobInfo.GetDescript());
-    }
+    }// end SendJobDescription()
 
+    // Sends all worker info to workers on worker screen
     void SendWorkersToScreen()
     {
         System.Random rand = new System.Random();
 
         Worker[] shuffledArr = new Worker[allWorkerInfo.Length];
 
-        // Randomly sort info list
+        // Randomly sort info list. This is so that each worker will not get the same role for 
+        // each play of the game..
         int i = 0;
         while (i != allWorkerInfo.Length)
         {
@@ -205,7 +223,7 @@ public class LoadGameInfoV2 : MonoBehaviour
                 shuffledArr[i] = allWorkerInfo[randomIndex];
                 i++;
             }
-        }
+        }// end while loop
 
         // Use new random list to assign all workers with
         for (int j = 0; j < allWorkers.Length; j++)
@@ -217,7 +235,7 @@ public class LoadGameInfoV2 : MonoBehaviour
             thisWorker.SendMessage("ReceiveStatus", shuffledArr[j].IsCorrect());
 
         }
-    }
+    }// end SendWorkersToScreen
 
     // CHANGE LATER if I figure out why string comparison functions aren't working
     bool WorkerIsCorrect(string str)
@@ -241,8 +259,10 @@ public class LoadGameInfoV2 : MonoBehaviour
                 Debug.Log("ERROR! Yes/No has not been detected - " + temp[1]);
                 return false;
             }
-        }
-    }
+        }// end using
+
+    }// end WorkerIsCorrect
+
     // Job node for boss screen and job description panel
     public class Job
     {

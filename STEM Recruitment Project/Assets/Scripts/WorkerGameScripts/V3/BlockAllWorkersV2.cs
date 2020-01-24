@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script Summary ////////////////////////////////////////////////////////////
 /*
- * This script just blocks all workers from being picked up if the star is picked up 
+ * This script blocks all workers from being picked up if the star is picked up 
  */
 
 public class BlockAllWorkersV2 : MonoBehaviour
@@ -14,7 +15,7 @@ public class BlockAllWorkersV2 : MonoBehaviour
     private bool workerGrabbed = false;
     private GameObject workerScreen;
 
-    // Start is called before the first frame update
+    // Find both halves of star & worker screen
     void Start()
     {
         GameObject rightHalf = this.transform.Find("RightHalfStar").gameObject;
@@ -25,25 +26,28 @@ public class BlockAllWorkersV2 : MonoBehaviour
         rightImage = rightHalf.GetComponent<SpriteRenderer>();
         leftImage = leftHalf.GetComponent<SpriteRenderer>();
 
-    }
+    }// end Start
 
-    // Update is called once per frame
+    // Blocks and unblocks workers as needed
     void Update()
     {
+        // Making sure the worker screen is active to begin with.
         if(workerScreen.activeSelf)
         {
+            // If the star or worker is grabbed, block all workers.
             if ((IsGrabbed(rightImage) && IsGrabbed(leftImage)) || workerGrabbed)
             {
                 BlockWorkers(true);
             }
-
+            // Otherwise, unblock all workers
             else
             {
                 BlockWorkers(false);
             }
-        }
-    }
+        }// end if worker screen active
+    }// end Update
 
+    // If a given image is enabled, return true.
     bool IsGrabbed(SpriteRenderer image)
     {
         if (image.enabled == true)
@@ -53,6 +57,7 @@ public class BlockAllWorkersV2 : MonoBehaviour
         return false;
     }
 
+    // Finds all workers on screen and blocks/unblocks their movement
     void BlockWorkers(bool status)
     {
         if (status) // If a worker has to be blocked, find both arms and block movement
@@ -73,7 +78,7 @@ public class BlockAllWorkersV2 : MonoBehaviour
 
                 leftArm.SendMessage("SetOkToLift", false);
             }
-        }
+        }// end if 
 
         // If a worker can be moved, unblock both arms/
         else
@@ -94,11 +99,12 @@ public class BlockAllWorkersV2 : MonoBehaviour
 
                 leftArm.SendMessage("SetOkToLift", true);
             }
-        }
-    }
+        }// end else
+    }// end BlockWorkers
 
+    // This is called through LiftWorkerAndDrag
     public void WorkerIsGrabbed(bool status)
     {
         workerGrabbed = status;
     }
-}
+}// end BlockAllWorkersV2

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Script Summary ////////////////////////////////////////////////////////////
+/*
+ * Displays project title (ex: Project Headquarters - 
+ * Today recruiting for... Smartphone Development)
+ */
+
 public class DisplayProjectTitle : MonoBehaviour
 {
     public TextMeshProUGUI title;
