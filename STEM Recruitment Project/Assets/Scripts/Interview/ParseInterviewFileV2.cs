@@ -11,6 +11,9 @@ public class ParseInterviewFileV2 : MonoBehaviour
     [SerializeField]
     private GameObject[] candidateObjects;
 
+    [SerializeField]
+    private GameObject questionsScript;
+
     private Interviewee[] candidates;
     private JobInfo jobInfoNode;
 
@@ -115,6 +118,7 @@ public class ParseInterviewFileV2 : MonoBehaviour
             OrganizeJobInfo(fileInfo, jobStart, jobEnd);
             OrganizeCandidates(fileInfo, candidateStart, candidateEnd);
             SendCandidateInfo();
+            SendJobInfo();
             //Debug.Log(numOfLines);
             reader.Close();
         }// end try
@@ -337,6 +341,11 @@ public class ParseInterviewFileV2 : MonoBehaviour
         }
     }
 
+    private void SendJobInfo()
+    {
+        questionsScript.SendMessage("ReceiveQuestions", jobInfoNode.GetQuestions());
+    }
+
     /////////////////// Helper functions /////////////////////////////////
     // My own method to use for string comparisons... DELETE THIS MAYBE
     bool StringEqual(string str1, string str2)
@@ -373,7 +382,7 @@ public class ParseInterviewFileV2 : MonoBehaviour
 
     string[] GetArrayInfo(string[] fileInfo, int start, int end)
     {
-        Debug.Log("GETARRAYINFO CALLED");
+       // Debug.Log("GETARRAYINFO CALLED");
         int len = end - start + 1;
 
         string[] returnArr = new string[len];
@@ -381,12 +390,12 @@ public class ParseInterviewFileV2 : MonoBehaviour
         for (int i = 0; i < len; i++)
         {
             returnArr[i] = fileInfo[start];
-            Debug.Log(returnArr[i]);
+           // Debug.Log(returnArr[i]);
             start++;
         }
 
         return returnArr;
-    }
+    }// end GetArrayInfo
     /////////////////// Nodes //////////////////////////
     // Node that holds all info about specfific interviewee.
     class Interviewee

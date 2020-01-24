@@ -7,104 +7,106 @@ public class ReadThroughInterviewee : MonoBehaviour
 {
     public GameObject[] otherTwo = new GameObject[2];
     private Text candidateText;
-    private GameObject speechBubble;
+    private GameObject speechBubble, judge;
 
     // These 4 can be changed later. I only have these values so that I can cycle 
     // through each array and see the candidate's answers, score, and feedback
     // in that order.
-    private int ansIndex, fbIndex, scoresIndex, arrID;
-
+    //private int ansIndex, fbIndex, scoresIndex, arrID;
+    private int currentIndex = 0;
+    private bool showAnswer = false;
     // Info found in ParseInterviewFile.
     private string[] answers, feedback;
     private int[] scores;
     private string pros, cons;
-
     // Start is called before the first frame update
     void Start()
     {
-        /*string candidateName = this.name + "/";
-        arrID = 1;
-        ansIndex = 0;
-        scoresIndex = 0;
-        fbIndex = 0;
-        speechBubble = GameObject.Find(candidateName+"Canvas/Speechbubble");
-        candidateText = speechBubble.transform.Find("Text").gameObject.GetComponent<Text>();
-        speechBubble.SetActive(false);*/
+        speechBubble = GameObject.Find("Canvas/Speechbubble");
+
+        judge = GameObject.Find("Canvas/Judge");
+    
+        speechBubble.SetActive(false);
+
+        judge.SetActive(false);
+        
+    }
+
+    // If a user hand collides with the worker, show the worker's answer after a given amount of time.
+    private void OnTriggerEnter(Collider other)
+    {
+        if (showAnswer && other.tag == "Hand")
+        {
+           // Debug.Log("Hand collided with me!!");
+            StartCoroutine(DelayAnswer());
+        }
+        
+    }
+
+    // If a user hand leaves a worker, hide the worker's answer.
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Hand")
+        {
+            StopAllCoroutines();
+
+            speechBubble.SetActive(false);
+        }
     }
     
-    // This is just a tester function. Cycles through the answers, scores, and feedback
-    // to make sure everything transferred fine. Used through the button.
-    public void CycleThroughInfo()
+    // Delays answer by 1/2 a second. This helps with usability.
+    IEnumerator DelayAnswer()
     {
+        yield return new WaitForSeconds(0.5f);
+
         speechBubble.SetActive(true);
-        DeactivateOtherBubbles();
-        // read answers array
-        if (arrID == 1)
-        {
-            candidateText.text = answers[ansIndex];
-            ansIndex++;
-            arrID++;
-        }
 
-        // read score array
-        else if (arrID == 2)
-        {
-            candidateText.text = "Score: " + scores[scoresIndex];
-            scoresIndex++;
-            arrID++;
-        }
-
-        // read feedback array
-        else if (arrID == 3)
-        {
-            candidateText.text = "Feedback: " + feedback[fbIndex];
-            fbIndex++;
-
-            // If we've reach the end of all of the arrays, go to pros & cons
-            if (fbIndex == feedback.Length)
-            {
-                arrID++;
-            }
-
-            // If not, go back to the answers array.
-            else
-            {
-                arrID = 1;
-            }
-        }
-
-        // read pros
-        else if (arrID == 4)
-        {
-            candidateText.text = "PROS: " + pros;
-            arrID++;
-        }
-        
-        // read cons
-        else if (arrID == 5)
-        {
-            candidateText.text = "CONS: " + cons;
-        }
-        
-        // something screwed up if the index is > 5. 
-        else
-        {
-            Debug.Log("ARRAY ID ERROR. ID IS " + arrID);
-        }
+        speechBubble.transform.Find("Response").GetComponent<Text>().text = answers[currentIndex];
     }
 
-    public void SetBubbleActive(bool status)
-    {
-        speechBubble.SetActive(status);
-    }
-
-    private void DeactivateOtherBubbles()
+    /*private void DeactivateOtherBubbles()
     {
         otherTwo[0].SendMessage("SetBubbleActive", false);
         otherTwo[1].SendMessage("SetBubbleActive", false);
     }
 
-    ///////////////////////// PUBLIC GET FUNCTIONS ///////////////////////////
+    public void SetBubbleActive(bool status)
+    {
+        speechBubble.SetActive(status);
+    }*/
+    
+
+    // Enables/disables other two candidates' buttons
+    public void EnableOtherTwoCandidates(bool status)
+    {
+        otherTwo[0].transform.Find("Canvas/Button").GetComponent<Button>().enabled = status;
+        otherTwo[1].transform.Find("Canvas/Button").GetComponent<Button>().enabled = status;
+    }
+
+    // Accessed through ReadThroughQuestions. Ensures that the question and candidate answer index are the same.
+    public void ChangeIndex(int num)
+    {
+        currentIndex = num;
+    }
+
+    // Allows bubble to be shown. 
+    public void AllowBubble(bool status)
+    {
+        showAnswer = status;
+    }
+    
+    // Called from ButtonManagementV2. If this candidate is selected, activate the candidate's judge and 
+    // send necessary info.
+    public void SelectMe(bool status)
+    {
+        judge.SetActive(true);
+        
+        judge.SendMessage("ReceiveScore", scores[currentIndex]);
+
+        judge.SendMessage("ReceiveFeedback", feedback[currentIndex]);
+    }
+
+    ///////////////////////// PUBLIC RECEIVE FUNCTIONS ///////////////////////////
 
     /*
      * These functions get all the candidate's information through Unity's 
@@ -115,28 +117,27 @@ public class ReadThroughInterviewee : MonoBehaviour
     public void ReceiveAnswers(string[] newAnswers)
     {
         answers = newAnswers;
-        Debug.Log(this.name + "'s answer: " + answers[0]);
+       // Debug.Log(this.name + "'s answer: " + answers[0]);
     }
     public void ReceiveFeedback(string[] newFeedback)
     {
         feedback = newFeedback;
-        Debug.Log(this.name + "'s feedback: " + feedback[0]);
+       // Debug.Log(this.name + "'s feedback: " + feedback[0]);
     }
     public void ReceiveScores(int[] newScores)
     {
         scores = newScores;
-        Debug.Log(this.name + "'s score: " + scores[0]);
+      //  Debug.Log(this.name + "'s score: " + scores[0]);
     }
     public void ReceivePros(string newPros)
     {
         pros = newPros;
-        Debug.Log(this.name + "'s pros: " + pros);
+      //  Debug.Log(this.name + "'s pros: " + pros);
     }
     public void ReceiveCons(string newCons)
     {
         cons = newCons;
-        Debug.Log(this.name + "'s cons: " + cons);
+      //  Debug.Log(this.name + "'s cons: " + cons);
     }
-
     /////////////////////// END PUBLIC GET FUNCTIONS /////////////////////////
 }

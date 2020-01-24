@@ -80,6 +80,7 @@ public class BasicDialog : MonoBehaviour
 
         StartCoroutine(TypeText());
     }
+
     // Can be called elsewhere
     public void StartDialog()
     {
