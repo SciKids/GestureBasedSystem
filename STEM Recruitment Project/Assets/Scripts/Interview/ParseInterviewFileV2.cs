@@ -247,84 +247,63 @@ public class ParseInterviewFileV2 : MonoBehaviour
             }*/
         }// end for
 
-        Debug.Log("Answers start at index " + answersStart);
+        int questionsLen = jobInfoNode.GetQuestions().Length;
+        /*Debug.Log("Answers start at index " + answersStart);
         Debug.Log("Feedback end at index " + feedbackStart);
         Debug.Log("Scores start at index " + scoresStart);
         Debug.Log("Pros start at index " + prosStart);
         Debug.Log("Cons start at index " + consStart);
+        */
+        int currentCandidate = 1;
 
-        int questionsLen = jobInfoNode.GetQuestions().Length;
-
-        // NOTE: This part is a bit hardcoded. I don't know if there's going to be the option of having
-        // more than 1 candidate. If there is, change this part up.
-
-        // Initialize all arrays
-        string[] candidate1Answers = new string[questionsLen];
-        string[] candidate2Answers = new string[questionsLen];
-        string[] candidate3Answers = new string[questionsLen];
-
-        string[] candidate1Feedback = new string[questionsLen];
-        string[] candidate2Feedback = new string[questionsLen];
-        string[] candidate3Feedback = new string[questionsLen];
-
-        int[] candidate1Scores = new int[questionsLen];
-        int[] candidate2Scores = new int[questionsLen];
-        int[] candidate3Scores = new int[questionsLen];
-
-        string candidate1Pros, candidate2Pros, candidate3Pros;
-        string candidate1Cons, candidate2Cons, candidate3Cons;
-
-        int candidateIndex = 0;
-        // Get each of the candidates' answers
-        for(int i = answersStart; i <= answersEnd; i+=3)
+        // Goes through each candidate
+        for(int i = 0; i < 3; i++)
         {
-            candidate1Answers[candidateIndex] = fileInfo[i];
-            candidate2Answers[candidateIndex] = fileInfo[i + 1];
-            candidate3Answers[candidateIndex] = fileInfo[i + 2];
-            candidateIndex++;
-        }
+            Interviewee candidate;
+            string[] answers = new string[questionsLen];
+            string[] feedback = new string[questionsLen];
+            int[] scores = new int[questionsLen];
+            string pros, cons;
 
-        candidateIndex = 0;
+            int index = 0;
 
-        // Get each of the candidates' feedback
-        for (int i = feedbackStart; i <= feedbackEnd; i += 3)
-        {
-            candidate1Feedback[candidateIndex] = fileInfo[i];
-            candidate2Feedback[candidateIndex] = fileInfo[i + 1];
-            candidate3Feedback[candidateIndex] = fileInfo[i + 2];
-            candidateIndex++;
-        }
+            // Save each answers from candidate i
+            for(int j = answersStart; j < answersStart + questionsLen; j++)
+            {
+                answers[index] = fileInfo[j];
+                index++;
+            }
 
-        candidateIndex = 0;
+            index = 0;
 
-        // Get each of the candidates' scores
-        for (int i = scoresStart; i <= scoresEnd; i += 3)
-        {
-            candidate1Scores[candidateIndex] = Int32.Parse(fileInfo[i]);
-            candidate2Scores[candidateIndex] = Int32.Parse(fileInfo[i + 1]);
-            candidate3Scores[candidateIndex] = Int32.Parse(fileInfo[i + 2]);
-            candidateIndex++;
-        }
+            // Save each feedback sentence from candidate i
+            for(int j = feedbackStart; j < feedbackStart + questionsLen; j++)
+            {
+                feedback[index] = fileInfo[j];
+                index++;
+            }
 
-        // Get each of the candidates' pros
-        candidate1Pros = fileInfo[prosStart];
-        candidate2Pros = fileInfo[prosStart+1];
-        candidate3Pros = fileInfo[prosStart+2];
+            index = 0; 
+            
+            // Save each score for candidate i.
+            for(int j = scoresStart; j < scoresStart + questionsLen; j++)
+            {
+                scores[index] = Int32.Parse(fileInfo[j]);
+                index++;
+            }
 
-        // Get each of the candidates' cons
-        candidate1Cons = fileInfo[consStart];
-        candidate2Cons = fileInfo[consStart+1];
-        candidate3Cons = fileInfo[consStart+2];
+            pros = fileInfo[prosStart + i];
+            cons = fileInfo[consStart + i];
 
-        // Make 3 new interviewee nodes to store all of the information
-        Interviewee candidate1 = new Interviewee(questionsLen, candidate1Answers, candidate1Feedback, candidate1Scores, candidate1Pros, candidate1Cons);
-        Interviewee candidate2 = new Interviewee(questionsLen, candidate2Answers, candidate2Feedback, candidate2Scores, candidate2Pros, candidate2Cons);
-        Interviewee candidate3 = new Interviewee(questionsLen, candidate3Answers, candidate3Feedback, candidate3Scores, candidate3Pros, candidate3Cons);
+            candidate = new Interviewee(questionsLen, answers, feedback, scores, pros, cons);
 
-        // Put nodes into candidates array
-        candidates[0] = candidate1;
-        candidates[1] = candidate2;
-        candidates[2] = candidate3;
+            candidates[i] = candidate;
+
+            // Go to next candidate's answer, feedback, and scores list.
+            answersStart += questionsLen;
+            feedbackStart += questionsLen;
+            scoresStart += questionsLen;
+        }// end for loop
 
     }// end OrganizeCandidates
 
@@ -346,9 +325,29 @@ public class ParseInterviewFileV2 : MonoBehaviour
         questionsScript.SendMessage("ReceiveQuestions", jobInfoNode.GetQuestions());
     }
 
+    private void CopySubArray(int startIndex, int endIndex, string[] originalArray,
+                              string[] newArrStr = null, int[] newArrInt = null)
+    {
+        if(newArrStr != null)
+        {
+            for(int i = startIndex; i <= endIndex; i++)
+            {
+                newArrStr[i] = originalArray[i];
+            }
+        }
+
+        if(newArrInt != null)
+        {
+            for(int i = startIndex; i <= endIndex; i++)
+            {
+                newArrInt[i] = Int32.Parse(originalArray[i]);
+            }
+        }
+    }// end CopySubArray
+
     /////////////////// Helper functions /////////////////////////////////
     // My own method to use for string comparisons... DELETE THIS MAYBE
-    bool StringEqual(string str1, string str2)
+   /* bool StringEqual(string str1, string str2)
     {
         str1.Trim();
         str2.Trim();
@@ -367,7 +366,7 @@ public class ParseInterviewFileV2 : MonoBehaviour
         Debug.Log(str1 + " IS " + str2);
         return true;
     }// end StringEqual
-
+    */
     static string GetFilePath()
     {
         if (Application.isEditor)

@@ -11,7 +11,7 @@ public class ButtonManagementV2 : MonoBehaviour
     [SerializeField]
     Button continueButton, resultsButton;
 
-
+    // Enables/disables candidate buttons
     public void EnableCandidates(bool status)
     {
         for(int i = 0; i < candidates.Length; i++)

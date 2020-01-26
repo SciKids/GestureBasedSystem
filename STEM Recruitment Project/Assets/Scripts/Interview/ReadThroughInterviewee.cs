@@ -41,7 +41,7 @@ public class ReadThroughInterviewee : MonoBehaviour
             StartCoroutine(DelayAnswer());
         }
         
-    }
+    }// end OnTriggerEnter
 
     // If a user hand leaves a worker, hide the worker's answer.
     private void OnTriggerExit(Collider other)
@@ -52,8 +52,21 @@ public class ReadThroughInterviewee : MonoBehaviour
 
             speechBubble.SetActive(false);
         }
+    }// end OnTriggerExit
+
+    // For using desktop, rather than camera.
+    private void OnMouseEnter()
+    {
+        StartCoroutine(DelayAnswer());
     }
-    
+
+    private void OnMouseExit()
+    {
+        StopAllCoroutines();
+
+        speechBubble.SetActive(false);
+    }
+
     // Delays answer by 1/2 a second. This helps with usability.
     IEnumerator DelayAnswer()
     {
@@ -95,6 +108,12 @@ public class ReadThroughInterviewee : MonoBehaviour
         showAnswer = status;
     }
     
+    // Enables/disables judge from other scripts
+    public void EnableJudge(bool status)
+    {
+        judge.SetActive(status);
+    }
+
     // Called from ButtonManagementV2. If this candidate is selected, activate the candidate's judge and 
     // send necessary info.
     public void SelectMe(bool status)
@@ -118,11 +137,20 @@ public class ReadThroughInterviewee : MonoBehaviour
     {
         answers = newAnswers;
        // Debug.Log(this.name + "'s answer: " + answers[0]);
+      /* for(int i = 0; i < newAnswers.Length; i++)
+        {
+            Debug.Log(this.name + "'s answer " + i + ": " + newAnswers[i]);
+        }*/
     }
+
     public void ReceiveFeedback(string[] newFeedback)
     {
         feedback = newFeedback;
-       // Debug.Log(this.name + "'s feedback: " + feedback[0]);
+        /*for (int i = 0; i < feedback.Length; i++)
+        {
+            Debug.Log(this.name + "'s feedback " + i + ": " + feedback[i]);
+        }*/
+        // Debug.Log(this.name + "'s feedback: " + feedback[0]);
     }
     public void ReceiveScores(int[] newScores)
     {

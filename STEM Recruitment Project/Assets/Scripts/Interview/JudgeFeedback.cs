@@ -33,6 +33,19 @@ public class JudgeFeedback : MonoBehaviour
         }
     }
 
+    // OnMouse methods for desktop use.
+    private void OnMouseEnter()
+    {
+        StartCoroutine(DelayFeedback());
+    }
+
+    private void OnMouseExit()
+    {
+        StopAllCoroutines();
+
+        judgeBubble.SetActive(false);
+    }
+
     public void ReceiveFeedback(string newFeedback)
     {
         feedback = newFeedback;
