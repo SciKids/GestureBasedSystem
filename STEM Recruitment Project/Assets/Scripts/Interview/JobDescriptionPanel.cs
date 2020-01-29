@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JobDescriptionPanel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Text jobDescription;
+
+    private void Awake()
     {
-        
+        jobDescription = GameObject.Find("Canvas/jobText").GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReceiveDescription(string[] description)
     {
-        
+        jobDescription.text = "";
+        for (int i = 0; i < description.Length; i++)
+        {
+            jobDescription.text += description[i];
+        }
     }
 }

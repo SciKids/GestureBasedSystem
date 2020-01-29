@@ -14,7 +14,7 @@ public class ReadThroughQuestions : MonoBehaviour
     GameObject[] candidates, judges;
 
     [SerializeField]
-    GameObject buttonManagement;
+    GameObject buttonManagement, resultsPanel;
 
     string[] questions;
     int questionsIndex = 0;
@@ -26,7 +26,7 @@ public class ReadThroughQuestions : MonoBehaviour
         // I'm finding the component here, since this method is called in the start method in ParseInterviewFileV2.
         questionsText = this.GetComponent<Text>();
         questionsText.text = "";
-        
+
     }// endAwake.
     
     // This is called through the Continue button. Goes to next question and lets candidate objects know that we're
@@ -37,15 +37,23 @@ public class ReadThroughQuestions : MonoBehaviour
 
         questionsIndex++;
 
-        Debug.Log("Questions index: " + questionsIndex);
-
-        for(int i = 0; i < candidates.Length; i++)
+        if(questionsIndex >= questions.Length)
         {
-            candidates[i].SendMessage("ChangeIndex", questionsIndex);
-            candidates[i].SendMessage("EnableJudge", false);
+            resultsPanel.SetActive(true);
         }
 
-        StartCoroutine(TypeText());
+        else
+        {
+            Debug.Log("Questions index: " + questionsIndex);
+
+            for (int i = 0; i < candidates.Length; i++)
+            {
+                candidates[i].SendMessage("ChangeIndex", questionsIndex);
+                candidates[i].SendMessage("EnableJudge", false);
+            }
+
+            StartCoroutine(TypeText());
+        }
     }// end NextQuestion
 
     public void ReceiveQuestions(string[] newQuestions)

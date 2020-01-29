@@ -12,8 +12,8 @@ public class ParseInterviewFileV2 : MonoBehaviour
     private GameObject[] candidateObjects;
 
     [SerializeField]
-    private GameObject questionsScript;
-
+    private GameObject questionsScript, jobPanel, resultsPanel;
+    
     private Interviewee[] candidates;
     private JobInfo jobInfoNode;
 
@@ -127,6 +127,14 @@ public class ParseInterviewFileV2 : MonoBehaviour
             Debug.Log(e);
         }
     }// end Start
+
+
+    public void SendResultsPanelInfo(int index)
+    {
+        resultsPanel.SendMessage("ReceiveName", candidateObjects[index].name);
+        resultsPanel.SendMessage("ReceivePros", candidates[index].GetPros());
+        resultsPanel.SendMessage("ReceiveCons", candidates[index].GetCons());
+    }
 
     // Further organizes all the job stuff. This includes splash screen text, job title & information,
     // and interview questions
@@ -320,11 +328,19 @@ public class ParseInterviewFileV2 : MonoBehaviour
         }
     }
 
+    // Sends job information (questions, description, etc.) to needed areas.
     private void SendJobInfo()
     {
+        // send over questions to the questionTxt object
         questionsScript.SendMessage("ReceiveQuestions", jobInfoNode.GetQuestions());
-    }
 
+        // Set the job panel to active in order to send over the job description.
+        jobPanel.SetActive(true);
+        jobPanel.SendMessage("ReceiveDescription", jobInfoNode.GetDescription());
+        jobPanel.SetActive(false);
+    }// end SendJobInfo
+
+    
     private void CopySubArray(int startIndex, int endIndex, string[] originalArray,
                               string[] newArrStr = null, int[] newArrInt = null)
     {
@@ -346,27 +362,6 @@ public class ParseInterviewFileV2 : MonoBehaviour
     }// end CopySubArray
 
     /////////////////// Helper functions /////////////////////////////////
-    // My own method to use for string comparisons... DELETE THIS MAYBE
-   /* bool StringEqual(string str1, string str2)
-    {
-        str1.Trim();
-        str2.Trim();
-
-        char[] charArr = str1.ToCharArray();
-        char[] charArr2 = str2.ToCharArray();
-
-        for(int i = 0; i < charArr.Length; i++)
-        {
-            if(charArr[i] != charArr2[i])
-            {
-                Debug.Log(str1 + " IS NOT " + str2);
-                return false;
-            }
-        }
-        Debug.Log(str1 + " IS " + str2);
-        return true;
-    }// end StringEqual
-    */
     static string GetFilePath()
     {
         if (Application.isEditor)
@@ -395,6 +390,8 @@ public class ParseInterviewFileV2 : MonoBehaviour
 
         return returnArr;
     }// end GetArrayInfo
+
+
     /////////////////// Nodes //////////////////////////
     // Node that holds all info about specfific interviewee.
     class Interviewee

@@ -11,6 +11,9 @@ public class ButtonManagementV2 : MonoBehaviour
     [SerializeField]
     Button continueButton, resultsButton;
 
+    [SerializeField]
+    GameObject jobPanel, resultsPanel;
+
     // Enables/disables candidate buttons
     public void EnableCandidates(bool status)
     {
@@ -39,5 +42,10 @@ public class ButtonManagementV2 : MonoBehaviour
     public void SelectCandidate(GameObject candidate)
     {
         candidate.SendMessage("SelectMe", true);
+    }
+
+    public void ShowDescription(bool status)
+    {
+        jobPanel.SetActive(status);
     }
 }
