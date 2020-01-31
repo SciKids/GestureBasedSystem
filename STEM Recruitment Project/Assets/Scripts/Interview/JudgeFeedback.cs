@@ -7,11 +7,12 @@ public class JudgeFeedback : MonoBehaviour
 {
     string feedback;
     int score;
+    [SerializeField]
     GameObject judgeBubble;
 
-    private void Awake()
+    private void Start()
     {
-        judgeBubble = GameObject.Find("/Canvas/interviewPanel/JudgeBubble");
+        //judgeBubble = GameObject.Find("/Canvas/interviewPanel/JudgeBubble");
         judgeBubble.SetActive(false);
     }
 

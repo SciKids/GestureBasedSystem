@@ -16,6 +16,9 @@ public class ReadThroughQuestions : MonoBehaviour
     [SerializeField]
     GameObject buttonManagement, resultsPanel;
 
+    [SerializeField]
+    Button continueButton;
+
     string[] questions;
     int questionsIndex = 0;
     Text questionsText;
@@ -33,26 +36,30 @@ public class ReadThroughQuestions : MonoBehaviour
     // moving on.
     public void NextQuestion()
     {
-        questionsText.text = "";
-
-        questionsIndex++;
-
-        if(questionsIndex >= questions.Length)
+        if(continueButton.interactable == true)// This is here because the gestures will force the onClick function to run
         {
-            resultsPanel.SetActive(true);
-        }
+            questionsText.text = "";
 
-        else
-        {
-            Debug.Log("Questions index: " + questionsIndex);
+            questionsIndex++;
 
-            for (int i = 0; i < candidates.Length; i++)
+            if (questionsIndex >= questions.Length)
             {
-                candidates[i].SendMessage("ChangeIndex", questionsIndex);
-                candidates[i].SendMessage("EnableJudge", false);
+                resultsPanel.SetActive(true);
             }
 
-            StartCoroutine(TypeText());
+            else
+            {
+                Debug.Log("Questions index: " + questionsIndex);
+
+                for (int i = 0; i < candidates.Length; i++)
+                {
+                    candidates[i].SendMessage("ChangeIndex", questionsIndex);
+                    candidates[i].SendMessage("EnableJudge", false);
+                }
+
+                StartCoroutine(TypeText());
+            }
+
         }
     }// end NextQuestion
 

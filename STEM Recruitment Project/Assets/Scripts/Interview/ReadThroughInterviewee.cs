@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ReadThroughInterviewee : MonoBehaviour
 {
-    public GameObject[] otherTwo = new GameObject[2];
+  //  public GameObject[] otherTwo = new GameObject[2];
     private Text candidateText;
     private GameObject speechBubble, judge;
 
@@ -22,9 +22,9 @@ public class ReadThroughInterviewee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speechBubble = GameObject.Find("Canvas/Speechbubble");
+        speechBubble = GameObject.Find("/MainGameCanvas/interviewPanel/" + this.name + "/Canvas/Speechbubble");
 
-        judge = GameObject.Find("Canvas/Judge");
+        judge = GameObject.Find("/MainGameCanvas/interviewPanel/" + this.name + "/Canvas/Judge");
     
         speechBubble.SetActive(false);
 
@@ -86,7 +86,7 @@ public class ReadThroughInterviewee : MonoBehaviour
     public void SetBubbleActive(bool status)
     {
         speechBubble.SetActive(status);
-    }*/
+    }
     
 
     // Enables/disables other two candidates' buttons
@@ -94,7 +94,7 @@ public class ReadThroughInterviewee : MonoBehaviour
     {
         otherTwo[0].transform.Find("Canvas/Button").GetComponent<Button>().enabled = status;
         otherTwo[1].transform.Find("Canvas/Button").GetComponent<Button>().enabled = status;
-    }
+    }*/
 
     // Accessed through ReadThroughQuestions. Ensures that the question and candidate answer index are the same.
     public void ChangeIndex(int num)
@@ -118,6 +118,8 @@ public class ReadThroughInterviewee : MonoBehaviour
     // send necessary info.
     public void SelectMe(bool status)
     {
+        Debug.Log(this.name);
+
         judge.SetActive(true);
         
         judge.SendMessage("ReceiveScore", scores[currentIndex]);

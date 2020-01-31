@@ -12,7 +12,7 @@ public class ParseInterviewFileV2 : MonoBehaviour
     private GameObject[] candidateObjects;
 
     [SerializeField]
-    private GameObject questionsScript, jobPanel, resultsPanel;
+    private GameObject questionsScript, jobPanel, resultsPanel, instructionsCanvas, mainGameCanvas;
     
     private Interviewee[] candidates;
     private JobInfo jobInfoNode;
@@ -117,8 +117,9 @@ public class ParseInterviewFileV2 : MonoBehaviour
 
             OrganizeJobInfo(fileInfo, jobStart, jobEnd);
             OrganizeCandidates(fileInfo, candidateStart, candidateEnd);
-            SendCandidateInfo();
-            SendJobInfo();
+            SendInfoToInstructionsPage();
+            //SendCandidateInfo();
+           // SendJobInfo();
             //Debug.Log(numOfLines);
             reader.Close();
         }// end try
@@ -128,6 +129,13 @@ public class ParseInterviewFileV2 : MonoBehaviour
         }
     }// end Start
 
+    public void StartGame(bool status)
+    {
+        mainGameCanvas.SetActive(true);
+        instructionsCanvas.SetActive(false);
+        SendCandidateInfo();
+        SendJobInfo();
+    }
 
     public void SendResultsPanelInfo(int index)
     {
@@ -340,7 +348,14 @@ public class ParseInterviewFileV2 : MonoBehaviour
         jobPanel.SetActive(false);
     }// end SendJobInfo
 
-    
+    private void SendInfoToInstructionsPage()
+    {
+        instructionsCanvas.SendMessage("ReceiveQuestions", jobInfoNode.GetQuestions());
+        instructionsCanvas.SendMessage("ReceiveSplashPage", jobInfoNode.GetSplash());
+        instructionsCanvas.SendMessage("ReceiveTitle", jobInfoNode.GetJobTitle());
+        instructionsCanvas.SendMessage("StartInstructions", true);
+    }
+
     private void CopySubArray(int startIndex, int endIndex, string[] originalArray,
                               string[] newArrStr = null, int[] newArrInt = null)
     {
