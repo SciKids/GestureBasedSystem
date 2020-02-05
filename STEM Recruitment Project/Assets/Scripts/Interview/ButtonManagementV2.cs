@@ -48,4 +48,16 @@ public class ButtonManagementV2 : MonoBehaviour
     {
         jobPanel.SetActive(status);
     }
+
+    public void EnableCandidateCanvases(bool status)
+    {
+        for (int i = 0; i < candidates.Length; i++)
+        {
+            // Get the candidates button
+            GameObject canvas = candidates[i].transform.Find("Canvas").gameObject;
+
+            canvas.SetActive(status);
+        }
+    }
+    
 }

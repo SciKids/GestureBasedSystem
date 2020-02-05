@@ -45,6 +45,7 @@ public class ReadThroughQuestions : MonoBehaviour
             if (questionsIndex >= questions.Length)
             {
                 resultsPanel.SetActive(true);
+                buttonManagement.SendMessage("EnableCandidateCanvases", false);
             }
 
             else

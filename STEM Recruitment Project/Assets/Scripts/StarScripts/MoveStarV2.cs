@@ -14,6 +14,7 @@ public class MoveStarV2 : MonoBehaviour
     private Vector3 originalPos;
     private Animator anim;
     private bool starBlocked = false;
+    private Camera cam;
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class MoveStarV2 : MonoBehaviour
         originalPos = this.transform.localPosition;
 
         anim = this.GetComponent<Animator>();
+
+        cam = GameObject.Find("/Main Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -35,19 +38,12 @@ public class MoveStarV2 : MonoBehaviour
     {
         if ((IsGrabbed(rightImage) && IsGrabbed(leftImage)) && !starBlocked)
         {
-            //using the position of the right and left hands to move the whole object
-            Vector3 pos1 = leftHand.transform.position;
-            Vector3 pos2 = rightHand.transform.position;
-
-            Vector3 midPoint = (pos2 - pos1) / 2;
-
-            this.transform.position = midPoint + pos1;
-
-           // Debug.Log(this.transform.position);
+            MoveStarWithHands();
+            // Debug.Log(this.transform.position);
             if (UserLetGo())
             {
-                // If the user let go over a button, click the button
-                if (button != null)
+                // If the user let go over a button & the button is interactable, click the button
+                if (button != null && button.interactable == true)
                 {
                     StartCoroutine(ClickButton(button));
                 }
@@ -56,8 +52,9 @@ public class MoveStarV2 : MonoBehaviour
                 DisableImage(leftImage);
 
             }
+           // }
         }
-        if(starBlocked)
+        if (starBlocked)
         {
             DisableImage(rightImage);
             DisableImage(leftImage);
@@ -135,6 +132,27 @@ public class MoveStarV2 : MonoBehaviour
         }
 
         return false;
+    }
+
+    void MoveStarWithHands()
+    {
+        //using the position of the right and left hands to move the whole object
+        float cameraHeight = cam.orthographicSize;
+        float cameraWidth = cameraHeight * cam.aspect;
+        
+        Vector3 pos1 = leftHand.transform.position;
+        Vector3 pos2 = rightHand.transform.position;
+
+        // Figure out new position - find midpoint of right & left hand, then add the result to the left hand
+        Vector3 newPos = ((pos2 - pos1) / 2) + pos1;
+        
+        // Lock star to the screen's width and height
+        newPos.x = Mathf.Clamp(newPos.x, cameraWidth * -1, cameraWidth);
+        newPos.y = Mathf.Clamp(newPos.y, cameraHeight * -1, cameraHeight);
+        
+        this.transform.position = newPos;
+        //Debug.Log("Camera height: " + cameraHeight + ", camera width: " + cameraWidth);
+        //Debug.Log(this.transform.position);
     }
 
     IEnumerator ClickButton(Button thisButton)
