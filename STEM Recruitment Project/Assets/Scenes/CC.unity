@@ -357,17 +357,17 @@ PrefabInstance:
     - target: {fileID: 2287039343839647823, guid: 13fc30f47dc8acf438783cd419933a1a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2287039343839647823, guid: 13fc30f47dc8acf438783cd419933a1a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2287039343839647823, guid: 13fc30f47dc8acf438783cd419933a1a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13fc30f47dc8acf438783cd419933a1a, type: 3}
@@ -532,7 +532,7 @@ PrefabInstance:
     - target: {fileID: 3706504503512245630, guid: 15d2011f0f0846d4d88c4c501aa1cec2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: interviewJob
+      value: InterviewGame
       objectReference: {fileID: 0}
     - target: {fileID: 3706504502978530203, guid: 15d2011f0f0846d4d88c4c501aa1cec2,
         type: 3}
@@ -822,17 +822,17 @@ PrefabInstance:
     - target: {fileID: 943678683077711991, guid: eb6c2fb210e013941aede8e8175e49f1,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 943678683077711991, guid: eb6c2fb210e013941aede8e8175e49f1,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 943678683077711991, guid: eb6c2fb210e013941aede8e8175e49f1,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb6c2fb210e013941aede8e8175e49f1, type: 3}
@@ -1057,7 +1057,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

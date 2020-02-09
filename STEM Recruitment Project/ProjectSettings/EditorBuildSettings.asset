@@ -44,7 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SplashScreens/interviewQuestions.unity
     guid: e965429202cbd1146939fb684b62b22d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/mcq.unity
     guid: ddc6f541e5676b84fa4dceee3dd58a66
   - enabled: 1
@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorkerGameScenes/WorkerGameV3.unity
     guid: 436b33fd31895544f9f05524a3c35e53
+  - enabled: 1
+    path: Assets/Scenes/InterviewGame.unity
+    guid: 030f23f0378d2fd49895b55da696142a
   m_configObjects: {}

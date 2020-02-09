@@ -18,10 +18,10 @@ public class BasicDialog : MonoBehaviour
     private bool sentenceDone;
     private int index = 0;
     private int allSentences;
-    
+
     /*void Start()
     {
-     //   StartDialog();  
+     //   StartDialog();
     }*/
 
     // Receives messages from LoadGameInfo
@@ -36,8 +36,8 @@ public class BasicDialog : MonoBehaviour
     {
         if (sentenceDone)
         {
-            // If we've reached the end of the sentences list, 
-            // deactivate next sentence button and activate 
+            // If we've reached the end of the sentences list,
+            // deactivate next sentence button and activate
             // next screen button
             if (index == allSentences)
             {
@@ -77,7 +77,7 @@ public class BasicDialog : MonoBehaviour
         sentenceDone = true;
         index++;
     }// end TypeText
-    
+
     // This is called in the OnClick() in the nextSentenceButton.
     public void NextSentence()
     {
@@ -88,13 +88,13 @@ public class BasicDialog : MonoBehaviour
         StartCoroutine(TypeText());
     }// end NextSentence
 
-    // Can be called elsewhere. This is called when info from LoadGameInfo is loaded and sent, 
+    // Can be called elsewhere. This is called when info from LoadGameInfo is loaded and sent,
     // and is also called when the new project button is clicked.
     public void StartDialog()
     {
         index = 0;
         StopAllCoroutines();
-        
+
         dialogBox.text = "";
         sentenceDone = false;
         allSentences = sentences.Length;

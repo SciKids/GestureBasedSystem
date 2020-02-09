@@ -6,28 +6,30 @@ using UnityEngine.UI;
 public class HalfStarCollider2D : MonoBehaviour
 {// Script Summary ////////////////////////////////////////////////////////////
  /*
-  * This is attached to each half of the selection star. If a user hand collides, 
-  * the image is enabled. 
+  * This is attached to each half of the selection star. If a user hand collides,
+  * the image is enabled.
   */
     private SpriteRenderer halfStarImage;
 
     // Disables the half star image
     void Start()
     {
-        //this.enabled = false;
         halfStarImage = GetComponent<SpriteRenderer>();
         halfStarImage.enabled = false;
 
     }// end Start
 
-    // If a user hand collides with the half-star, enable the image
+    // If left hand collides with left half, or if right hand collides with right half, set image to true.
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Hand")
+        if(this.gameObject.name == "LeftHalfStar" && other.gameObject.name == "LeftHand")
         {
-            //Debug.Log("Hand collided");
+            halfStarImage.enabled = true;
+        }
+        if(this.gameObject.name == "RightHalfStar" && other.gameObject.name == "RightHand")
+        {
             halfStarImage.enabled = true;
         }
     }// end OnTriggerEnter
-    
+
 }// end HalfStarCollider2D

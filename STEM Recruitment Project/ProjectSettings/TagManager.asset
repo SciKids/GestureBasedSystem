@@ -8,6 +8,8 @@ TagManager:
   - Hand
   - Button
   - Chair
+  - UserPixel
+  - BottomLine
   layers:
   - Default
   - TransparentFX
@@ -53,4 +55,7 @@ TagManager:
     locked: 0
   - name: Bubble
     uniqueID: 4116678331
+    locked: 0
+  - name: Hand
+    uniqueID: 2570320749
     locked: 0

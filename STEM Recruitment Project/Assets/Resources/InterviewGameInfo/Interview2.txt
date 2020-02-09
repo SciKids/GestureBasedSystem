@@ -1,0 +1,52 @@
+﻿Astronomy: Observer/ Research Assistant;
+This work will be in support of an ongoing project that involves light curve observations of Main Belt asteroids.The Research Assistant will be responsible for:
+-Conducting photometric observations of asteroids.
+-Operating Lowell’s 42” Hall telescope located on Anderson Mesa.
+-Assessing data quality and performing preliminary reduction of the data.
+-Coordinating target selection and progress with project team members.
+-Contributing to analysis and publication of results.
+QUALIFICATIONS AND EXPECTATIONS: The Research Assistant should have experience in the basic use and operation of telescopes. Experience with OSX and Linux operating systems is required. Basic programming skills in relevant languages (e.g. python) is strongly desired. Meetings with supervisors and the project team are expected, but this position will mostly involve an independent work schedule. Must be able to prioritize tasks, set schedules, and complete task on time and within deadlines. Will be expected to reflect the professional environment the Observatory strives to maintain.
+EXPERIENCE AND EDUCATION: Minimum requirement for this position is an undergraduate degree in physics, astronomy, engineering, computer science, or related area.>;
+Tell us what you know about light curve observations - including procedures and best practices.; 
+Person 1 question 1 ANSWER;
+Person 2 question 1 ANSWER;
+Person 3 question 1 ANSWER; 
+Person 1 question 1 FEEDBACK;
+5;
+Person 2 question 1 FEEDBACK;
+4;
+Person 3 question 1 FEEDBACK;
+3;
+If you could be any animal, what would it be and why?;
+Person 1 question 2 ANSWER; 
+Person 2 question 2 ANSWER;
+Person 3 question 2 ANSWER; 
+Person 1 question 2 FEEDBACK;
+1;
+Person 2 question 2 FEEDBACK;
+2;
+Person 3 question 2 FEEDBACK;
+3;
+This job requires the successful candidate to be available on various nights and weekends. Do you have any children?; 
+Person 1 question 3 ANSWER; 
+Person 2 question 3 ANSWER;
+Person 3 question 3 ANSWER; 
+Person 1 question 3 FEEDBACK;
+9;
+Person 2 question 3 FEEDBACK;
+8;
+Person 3 question 3 FEEDBACK;
+7;
+Person 1 PROS;
+Person 1 CONS;
+Person 2 PROS;
+Person 2 CONS;
+Person 3 PROS;
+Person 3 CONS;
+Job Description and Interview Questions Splash Page;
+Job Description - Astronomy: Observer/ Research Assistant; 
+PAGE 1 for job - Astronomy: Observer/ Research Assistant; 
+PAGE N for job - Astronomy: Observer/ Research Assistant;
+Tell us what you know about light curve observations - including procedures and best practices.
+If you could be any animal, what would it be and why?
+This job requires the successful candidate to be available on various nights and weekends. Do you have any children?;

@@ -19,6 +19,7 @@ public class MoveStarV2 : MonoBehaviour
     private Vector3 originalPos;
     private Animator anim;
     private bool starBlocked = false;
+    private Camera cam;
 
     // Finds and saves both halves of the star, saves original position, and saves the
     // star's animation component for future use.
@@ -35,7 +36,9 @@ public class MoveStarV2 : MonoBehaviour
         originalPos = this.transform.localPosition;
 
         anim = this.GetComponent<Animator>();
-    }// end Start
+
+        cam = GameObject.Find("/Main Camera").GetComponent<Camera>();
+    }
 
     // Moves star if both halves are "grabbed". Also checks if one half is grabbed and the other
     // isn't, and fixes that.
@@ -44,21 +47,12 @@ public class MoveStarV2 : MonoBehaviour
         // If both halves of the star are grabbed, and the star isn't blocked, move the star
         if ((IsGrabbed(rightImage) && IsGrabbed(leftImage)) && !starBlocked)
         {
-            //using the position of the right and left hands to move the whole object
-            Vector3 pos1 = leftHand.transform.position;
-            Vector3 pos2 = rightHand.transform.position;
-
-            // Find the midpoint. 
-            Vector3 midPoint = (pos2 - pos1) / 2;
-
-            // Continuously set the star's position to the midpoint.
-            this.transform.position = midPoint + pos1;
-
-           //if the user let go, stop moving the star
+            MoveStarWithHands();
+            // Debug.Log(this.transform.position);
             if (UserLetGo())
             {
-                // If the user let go over a button, click the button
-                if (button != null)
+                // If the user let go over a button & the button is interactable, click the button
+                if (button != null && button.interactable == true)
                 {
                     StartCoroutine(ClickButton(button));
                 }
@@ -133,7 +127,7 @@ public class MoveStarV2 : MonoBehaviour
     {
         if (rightHand.transform.position.x - leftHand.transform.position.x > 350)
         {
-            // Debug.Log("DragWithHandlebars -> User let go with distance at " + 
+            // Debug.Log("DragWithHandlebars -> User let go with distance at " +
             //     (rightHand.transform.position.x - leftHand.transform.position.x));
             return true;
         }
@@ -162,12 +156,32 @@ public class MoveStarV2 : MonoBehaviour
         return false;
     }// end UserLetGo
 
-    // Invokes the onClick function on a given button after the star's animation is done.
+    void MoveStarWithHands()
+    {
+        //using the position of the right and left hands to move the whole object
+        float cameraHeight = cam.orthographicSize;
+        float cameraWidth = cameraHeight * cam.aspect;
+
+        Vector3 pos1 = leftHand.transform.position;
+        Vector3 pos2 = rightHand.transform.position;
+
+        // Figure out new position - find midpoint of right & left hand, then add the result to the left hand
+        Vector3 newPos = ((pos2 - pos1) / 2) + pos1;
+
+        // Lock star to the screen's width and height
+        newPos.x = Mathf.Clamp(newPos.x, cameraWidth * -1, cameraWidth);
+        newPos.y = Mathf.Clamp(newPos.y, cameraHeight * -1, cameraHeight);
+
+        this.transform.position = newPos;
+        //Debug.Log("Camera height: " + cameraHeight + ", camera width: " + cameraWidth);
+        //Debug.Log(this.transform.position);
+    }
+
     IEnumerator ClickButton(Button thisButton)
     {
         // Change the star's position to the button's position.
         this.transform.position = new Vector3(button.transform.position.x, button.transform.position.y, this.transform.position.z);
-        
+
         anim.Play("StarSelect");// Play the animation
 
         yield return new WaitForSeconds(0.70f); // This is how long it takes for the star to shrink
