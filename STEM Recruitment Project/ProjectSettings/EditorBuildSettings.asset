@@ -68,4 +68,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InterviewGame.unity
     guid: 030f23f0378d2fd49895b55da696142a
+  - enabled: 1
+    path: Assets/Scenes/SplashScreens/InterviewSplash.unity
+    guid: bf4cec7bf1ce3524ea7bb3886abd5f36
   m_configObjects: {}

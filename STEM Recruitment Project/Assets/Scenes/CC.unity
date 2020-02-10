@@ -532,7 +532,7 @@ PrefabInstance:
     - target: {fileID: 3706504503512245630, guid: 15d2011f0f0846d4d88c4c501aa1cec2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: InterviewGame
+      value: InterviewSplash
       objectReference: {fileID: 0}
     - target: {fileID: 3706504502978530203, guid: 15d2011f0f0846d4d88c4c501aa1cec2,
         type: 3}
