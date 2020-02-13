@@ -24,7 +24,7 @@ public class CheckWorkersV3 : MonoBehaviour
     // Set necessary buttons and loading circle to inactive
     private void Start()
     {
-        exitButton.SetActive(false);
+        //exitButton.SetActive(false);
         nextButton.SetActive(false);
         loadingCircle.SetActive(false);
         dummyWorker = new GameObject("dummy");
@@ -50,7 +50,7 @@ public class CheckWorkersV3 : MonoBehaviour
         // and hide the next and reset buttons.
         if (allIsCorrect)
         {
-            exitButton.SetActive(true);
+            //exitButton.SetActive(true);
             nextButton.SetActive(false);
             resetButton.SetActive(false);
             SendStatusMessageToAllWorkers(true);

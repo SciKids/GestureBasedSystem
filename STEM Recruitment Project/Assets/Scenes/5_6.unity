@@ -513,12 +513,12 @@ PrefabInstance:
     - target: {fileID: 3706504502978530203, guid: 15d2011f0f0846d4d88c4c501aa1cec2,
         type: 3}
       propertyPath: m_text
-      value: Working Game
+      value: Worker Game
       objectReference: {fileID: 0}
     - target: {fileID: 3706504502978530203, guid: 15d2011f0f0846d4d88c4c501aa1cec2,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3706504502978530203, guid: 15d2011f0f0846d4d88c4c501aa1cec2,
         type: 3}
