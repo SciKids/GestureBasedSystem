@@ -1,18 +1,11 @@
 SPLASH_PAGE;
-Wildlife Internship description here - page 1;
-Wildlife Internship description here - page 2;
+Organ Pipe Cactus National Monument is a diverse, tropical desert on the international boundary and 60 miles from the Sea of Cortez. Summers are VERY hot and winters are mild. Interns will gain experience with wildlife inventory and monitoring and research, including work to conserve threatened and endangered species and other species of conservation concern. Tasks will be performed both independently and with others as part of a team. Candidates will likely assist with inventory or monitoring projects for the following taxa:;
+Point counts for birds, small mammal trapping, camera trapping, and acoustic monitoring for bats, reptile visual encounter surveys, line transects for tortoises, pitfall/funnel trapping for snakes, amphibian monitoring (acoustic and visual encounter surveys);
+Some surveys for arthropods may occur also. Disease surveillance will occur as part of field activities, including for White-nose Syndrome in bats and Chytridiomycosis in amphibians.;
 SPLASH_PAGE_END;
 INFORMATION;
 Wildlife Internship;
 Organ Pipe Cactus National Monument is a diverse, tropical desert on the international boundary and 60 miles from the Sea of Cortez. Summers are VERY hot and winters are mild. Interns will gain experience with wildlife inventory and monitoring and research, including work to conserve threatened and endangered species and other species of conservation concern. Tasks will be performed both independently and with others as part of a team.
-Candidates will likely assist with inventory or monitoring projects for the following taxa:
-- point counts for birds
-- small mammal trapping, camera trapping, and acoustic monitoring for bats
-- reptile visual encounter surveys
-- line transects for tortoises
-- pitfall/funnel trapping for snakes
-- amphibian monitoring (acoustic and visual encounter surveys)
-Some surveys for arthropods may occur also. Disease surveillance will occur as part of field activities, including for White-nose Syndrome in bats and Chytridiomycosis in amphibians.;
 INFORMATION_END;
 QUESTIONS;
 Why are you interested in this position? What traits/experiences do you have that make you a good fit?;

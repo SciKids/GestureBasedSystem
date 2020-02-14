@@ -150,9 +150,10 @@ public class ParseInterviewFileV2 : MonoBehaviour
     {
         // All needed variables for new node
         int splashPageStart = 0, infoStart = 0, questionsStart = 0, infoEnd = 0, splashPageEnd = 0, questionsEnd = 0;
-        
+
         // Get a sub array with just job information
         //int len = endIndex - startIndex;
+        bool splashPagePresent = false;
 
         // Get start points & lengths of everything
         for(int i = 0; i < fileInfo.Length-1; i++)
@@ -160,6 +161,15 @@ public class ParseInterviewFileV2 : MonoBehaviour
             if(fileInfo[i].Equals("SPLASH_PAGE"))
             {
                 splashPageStart = i;
+
+                if(fileInfo[i+1].Equals("SPLASH_PAGE_END"))
+                {
+                    splashPagePresent = false;
+                }
+                else
+                {
+                    splashPagePresent = true;
+                }
             }
 
             if (fileInfo[i].Equals("INFORMATION"))
@@ -172,7 +182,7 @@ public class ParseInterviewFileV2 : MonoBehaviour
                 questionsStart = i;
             }
 
-            if(fileInfo[i].Equals("SPLASH_PAGE_END"))
+            if(fileInfo[i].Equals("SPLASH_PAGE_END") && splashPagePresent)
             {
                 splashPageEnd = i;
             }
@@ -187,9 +197,19 @@ public class ParseInterviewFileV2 : MonoBehaviour
                 questionsEnd = i;
                 break; // this is all we need at this point.
             }
+            
         }// end for loop
+        string[] splashPageInfo;
 
-        string[] splashPageInfo = GetArrayInfo(fileInfo, splashPageStart+1, splashPageEnd-1);
+        if(splashPagePresent)
+        {
+            splashPageInfo = GetArrayInfo(fileInfo, splashPageStart + 1, splashPageEnd - 1);
+        }
+        else
+        {
+            splashPageInfo = new string[1] { "false" };
+        }
+        
         string[] questions = GetArrayInfo(fileInfo, questionsStart+1, questionsEnd-1);
 
         string[] allInfoArr = GetArrayInfo(fileInfo, infoStart, infoEnd);

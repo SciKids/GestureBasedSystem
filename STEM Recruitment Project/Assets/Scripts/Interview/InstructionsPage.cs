@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InstructionsPage : MonoBehaviour
@@ -15,7 +16,7 @@ public class InstructionsPage : MonoBehaviour
     private Text title, description;
     private int questionsIndex = 0, splashIndex = 0;
     private bool ready = false;
-
+    private bool splashPagePresent = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,15 @@ public class InstructionsPage : MonoBehaviour
     public void ReceiveSplashPage(string[] newSplash)
     {
         splash = newSplash;
+
+        if (splash[0].Equals("false"))
+        {
+            splashPagePresent = false;
+        }
+        else
+        {
+            splashPagePresent = true;
+        }
     }
 
     public void ReceiveQuestions(string[] newQuestions)
@@ -45,8 +55,26 @@ public class InstructionsPage : MonoBehaviour
     {
         if(start)
         {
-            description.text = splash[splashIndex];
+            if(splashPagePresent)
+            {
+                description.text = splash[splashIndex];
+            }
+            else
+            {
+                description.text = "Questions to be asked: \n\n";
+                previousButton.gameObject.SetActive(false);
+
+                for (int i = 0; i < questions.Length; i++)
+                {
+                    description.text += questions[i];
+
+                    description.text += "\n\n";
+                }
+
+                ready = true;
+            }
         }
+        
     }
     
     public void NextText()
@@ -69,12 +97,12 @@ public class InstructionsPage : MonoBehaviour
         
         else
         {
-            description.text = ""; 
-            for(int i = 0; i < questions.Length; i++)
+            description.text = "Questions to be asked: \n\n";
+            for (int i = 0; i < questions.Length; i++)
             {
                 description.text += questions[i];
 
-                description.text += "\n";
+                description.text += "\n\n";
             }
 
             ready = true;
@@ -106,4 +134,8 @@ public class InstructionsPage : MonoBehaviour
         }
     }
 
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }// end InstructionsPage
