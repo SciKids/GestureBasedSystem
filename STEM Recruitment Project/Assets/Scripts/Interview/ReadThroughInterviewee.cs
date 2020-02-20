@@ -19,6 +19,7 @@ public class ReadThroughInterviewee : MonoBehaviour
     private string[] answers, feedback;
     private int[] scores;
     private string pros, cons;
+    private Button button;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class ReadThroughInterviewee : MonoBehaviour
         speechBubble.SetActive(false);
 
         judge.SetActive(false);
+
+        button = GameObject.Find("/MainGameCanvas/interviewPanel/" + this.name + "/Canvas/Button").gameObject.GetComponent<Button>();
         
     }
 
@@ -125,6 +128,8 @@ public class ReadThroughInterviewee : MonoBehaviour
         judge.SendMessage("ReceiveScore", scores[currentIndex]);
 
         judge.SendMessage("ReceiveFeedback", feedback[currentIndex]);
+
+        button.interactable = false;
     }
 
     ///////////////////////// PUBLIC RECEIVE FUNCTIONS ///////////////////////////
